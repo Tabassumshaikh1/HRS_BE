@@ -5,6 +5,7 @@ export interface IUser {
   name: string;
   email?: string;
   contactNumber: string;
+  userName: string;
   password: string;
   role: UserRoles.ADMIN | UserRoles.DRIVER | UserRoles.CUSTOMER;
   profileImage?: string;

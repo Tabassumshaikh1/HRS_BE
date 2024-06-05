@@ -1,27 +1,55 @@
 import { Request } from "express";
+import * as jwt from "jsonwebtoken";
+import { AppError } from "../classes/app-error.class";
+import { AppDefaults, AppMessages, CommonConst, HttpStatus, UserStatus, ValidationKeys } from "../data/app.constants";
 import { ILoginCredentials, ILoginResponse } from "../interfaces/login.interface";
-import { encodeBase64 } from "./util.service";
-import { UserRoles, UserStatus } from "../data/app.constants";
+import User from "../models/user.model";
+import validate from "../validators/validation";
+import { cacheGetItem, cacheRemoveItem, cacheSetItem } from "./cache.service";
+import { compareBcryptValue } from "./util.service";
 
 const login = async (reqBody: ILoginCredentials): Promise<ILoginResponse> => {
-  const token =
-    "eyJfaWQiOiIxMjMiLCJuYW1lIjoiVXNlciIsImVtYWlsIjoidXNlckBlbWFpbC5jb20iLCJjb250YWN0TnVtYmVyIjoiOTk5OTk5OTk5IiwicGFzc3dvcmQiOiIxMjIzNDU3Iiwicm9sZSI6IkFETUlOIiwicHJvZmlsZUltYWdlIjpudWxsLCJzdGF0dXMiOiJBY3RpdmUiLCJjcmVhdGVkQXQiOiIyMDI0LTA2LTAyVDA4OjMzOjUwLjIyOFoiLCJ1cGRhdGVkQXQiOiIyMDI0LTA2LTAyVDA4OjMzOjUwLjIyOFoifQ==";
-  const user = encodeBase64({
-    _id: "123",
-    name: "User",
-    email: "user@email.com",
-    contactNumber: "999999999",
-    password: "1223457",
-    role: UserRoles.ADMIN,
-    profileImage: null,
-    status: UserStatus.ACTIVE,
-    createdAt: new Date(),
-    updatedAt: new Date(),
+  // Validating user before saving into DB
+  const errorMessage = validate(ValidationKeys.LOGIN, reqBody);
+  if (errorMessage) {
+    throw new AppError(HttpStatus.BAD_REQUEST, errorMessage);
+  }
+
+  // Checking is user already exist
+  let user: any = await User.findOne({
+    $or: [{ email: reqBody.userName }, { userName: reqBody.userName }, { contactNumber: reqBody.userName }],
   });
+  if (!user || !(await compareBcryptValue(reqBody.password, user.password))) {
+    throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.INVALID_CREDENTIALS);
+  }
+
+  // Checking is account active
+  if (user.status === UserStatus.INACTIVE) {
+    throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.ACCOUNT_INACTIVE);
+  }
+
+  const userId: string = user._id.toString();
+
+  // Checking is if user info and token already exist in cache
+  if (cacheGetItem(userId)) {
+    return cacheGetItem(userId) as ILoginResponse;
+  }
+
+  user = { ...user.toJSON(), _id: user?._id?.toString(), password: undefined };
+
+  // Creating token
+  const token = jwt.sign({ userId }, process.env.TOKEN_SECRET_KEY || CommonConst.EMPTY_STRING, {
+    expiresIn: AppDefaults.JWT_TOKEN_EXPIRES_IN,
+  });
+  cacheSetItem(userId, { token, user }, AppDefaults.ONE_DAY_IN_MILLISECONDS);
   return { token, user };
 };
 
 const logout = (req: Request) => {
+  if (req.user._id) {
+    // Removing token from cache
+    cacheRemoveItem(req.user._id as string);
+  }
   return true;
 };
 
