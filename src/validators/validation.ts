@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import { UserRoles, UserStatus, ValidationKeys } from "../data/app.constants";
+import { UserRoles, ActivityStatus, ValidationKeys } from "../data/app.constants";
 
 const schemas = {
   [ValidationKeys.NEW_USER]: Joi.object({
@@ -11,7 +11,7 @@ const schemas = {
     password: Joi.string().required().min(8),
     role: Joi.string().valid(UserRoles.ADMIN, UserRoles.DRIVER, UserRoles.CUSTOMER).required(),
     profileImage: Joi.any(),
-    status: Joi.string().valid(UserStatus.ACTIVE, UserStatus.INACTIVE),
+    status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
 
   [ValidationKeys.LOGIN]: Joi.object({
@@ -26,7 +26,17 @@ const schemas = {
     contactNumber: Joi.string().required(),
     licenseNumber: Joi.any(),
     profileImage: Joi.any(),
-    status: Joi.string().valid(UserStatus.ACTIVE, UserStatus.INACTIVE),
+    status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
+  }),
+
+  [ValidationKeys.VEHICLE]: Joi.object({
+    vehicleNumber: Joi.string().required(),
+    company: Joi.string().required(),
+    capacity: Joi.string().required(),
+    mfgYear: Joi.any(),
+    chassisNumber: Joi.any(),
+    regNumber: Joi.any(),
+    status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
 };
 

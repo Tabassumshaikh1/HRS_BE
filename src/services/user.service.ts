@@ -1,5 +1,5 @@
 import { AppError } from "../classes/app-error.class";
-import { AppMessages, CommonConst, HttpStatus, UserStatus, ValidationKeys } from "../data/app.constants";
+import { AppMessages, CommonConst, HttpStatus, ActivityStatus, ValidationKeys } from "../data/app.constants";
 import { IUser } from "../interfaces/user.interface";
 import User from "../models/user.model";
 import validate from "../validators/validation";
@@ -33,7 +33,7 @@ const createUser = async (reqBody: IUser): Promise<IUser> => {
     role: reqBody.role || CommonConst.EMPTY_STRING,
     profileImage: reqBody.profileImage || null,
     // TODO: Default status will be Inactive change it after email verification functionality
-    status: reqBody.status || UserStatus.ACTIVE,
+    status: reqBody.status || ActivityStatus.ACTIVE,
   });
   const savedUser: any = await user.save();
   return { ...savedUser.toJSON(), password: undefined };

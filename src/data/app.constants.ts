@@ -9,6 +9,7 @@ export enum AppMessages {
   UNAUTHORIZED = "Unauthorized Access",
   USER_EXIST = "User already exist with same username, email or contact number",
   DRIVER_NOT_EXIST = "Driver not exist",
+  VEHICLE_NOT_EXIST = "Vehicle not exist",
 }
 
 export enum SortBy {
@@ -28,6 +29,9 @@ export enum CommonConst {
   ASCII = "ascii",
   EMPTY_STRING = "",
   JWT_TOKEN_PREFIX = "Bearer ",
+  Name = "name",
+  VEHICLE_NUMBER = "vehicleNumber",
+  I = "i",
 }
 
 export enum Environment {
@@ -52,7 +56,7 @@ export enum UserRoles {
   CUSTOMER = "CUSTOMER",
 }
 
-export enum UserStatus {
+export enum ActivityStatus {
   ACTIVE = "Active",
   INACTIVE = "Inactive",
 }
@@ -61,6 +65,7 @@ export enum Routes {
   ROOT = "/",
   AUTH = "/auth",
   DRIVERS = "/drivers",
+  VEHICLES = "/vehicles",
 }
 
 export enum Endpoints {
@@ -75,14 +80,17 @@ export enum ValidationKeys {
   NEW_USER = "new_user",
   LOGIN = "login",
   UPDATE_DRIVER = "update_driver",
+  VEHICLE = "vehicle",
 }
 
 export enum SchemaNames {
   USER = "User",
+  VEHICLE = "Vehicle",
 }
 
 export enum QueryBuilderKeys {
   DRIVER_LIST = "driver_list",
+  VEHICLE_LIST = "vehicle_list",
 }
 
 export enum HttpStatus {

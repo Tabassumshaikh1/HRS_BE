@@ -1,4 +1,5 @@
 import { Request } from "express";
+import { AppError } from "../classes/app-error.class";
 import {
   AppMessages,
   CommonConst,
@@ -6,16 +7,14 @@ import {
   MongooseExcludedKeys,
   QueryBuilderKeys,
   SortBy,
-  UserStatus,
   ValidationKeys,
 } from "../data/app.constants";
 import { IQuery } from "../interfaces/query.interface";
 import { IListResponse } from "../interfaces/response.interface";
-import User from "../models/user.model";
-import { buildQuery } from "./util.service";
 import { IUser } from "../interfaces/user.interface";
-import { AppError } from "../classes/app-error.class";
+import User from "../models/user.model";
 import validate from "../validators/validation";
+import { buildQuery } from "./util.service";
 
 const getDrivers = async (req: Request): Promise<IListResponse> => {
   const { query, queryParams } = buildQuery(QueryBuilderKeys.DRIVER_LIST, req, { sort: "name", sortBy: SortBy.ASC } as IQuery);
@@ -73,4 +72,4 @@ const deleteDriver = async (id: string): Promise<any> => {
   return { _id: id };
 };
 
-export { getDrivers, getSingleDriver, updateDriver, deleteDriver };
+export { deleteDriver, getDrivers, getSingleDriver, updateDriver };

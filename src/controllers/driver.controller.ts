@@ -27,11 +27,11 @@ driverController.get(
 driverController.get(
   Endpoints.ID,
   AsyncHandler(async (req: Request, res: Response) => {
-    const department = await getSingleDriver(req.params.id);
-    if (!department) {
+    const driver = await getSingleDriver(req.params.id);
+    if (!driver) {
       throw new AppError(HttpStatus.NOT_FOUND, AppMessages.DRIVER_NOT_EXIST);
     }
-    res.status(HttpStatus.OK).json(department);
+    res.status(HttpStatus.OK).json(driver);
   })
 );
 

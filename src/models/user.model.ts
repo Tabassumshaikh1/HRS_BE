@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { SchemaNames, UserStatus } from "../data/app.constants";
+import { SchemaNames, ActivityStatus } from "../data/app.constants";
 import { IUser } from "../interfaces/user.interface";
 
 const userSchema = new Schema<IUser>(
@@ -12,7 +12,7 @@ const userSchema = new Schema<IUser>(
     role: { type: String, required: true },
     password: { type: String, required: true },
     profileImage: { type: String },
-    status: { type: String, default: UserStatus.INACTIVE },
+    status: { type: String, default: ActivityStatus.INACTIVE },
   },
   {
     timestamps: true,

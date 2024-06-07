@@ -1,7 +1,7 @@
 import { Request } from "express";
 import * as jwt from "jsonwebtoken";
 import { AppError } from "../classes/app-error.class";
-import { AppDefaults, AppMessages, CommonConst, HttpStatus, UserStatus, ValidationKeys } from "../data/app.constants";
+import { AppDefaults, AppMessages, CommonConst, HttpStatus, ActivityStatus, ValidationKeys } from "../data/app.constants";
 import { ILoginCredentials } from "../interfaces/login.interface";
 import { ILoginResponse } from "../interfaces/response.interface";
 import User from "../models/user.model";
@@ -25,7 +25,7 @@ const login = async (reqBody: ILoginCredentials): Promise<ILoginResponse> => {
   }
 
   // Checking is account active
-  if (user.status === UserStatus.INACTIVE) {
+  if (user.status === ActivityStatus.INACTIVE) {
     throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.ACCOUNT_INACTIVE);
   }
 

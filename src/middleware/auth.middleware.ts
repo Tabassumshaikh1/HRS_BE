@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
 import { AppError } from "../classes/app-error.class";
-import { AppMessages, CommonConst, HttpStatus, UserRoles, UserStatus } from "../data/app.constants";
+import { AppMessages, CommonConst, HttpStatus, UserRoles, ActivityStatus } from "../data/app.constants";
 import { cacheGetItem } from "../services/cache.service";
 
 const Auth = (roles?: `${UserRoles}`[]) => {
@@ -18,7 +18,7 @@ const Auth = (roles?: `${UserRoles}`[]) => {
       }
       const userInfo: any = cacheGetItem(tokenInfo.userId);
       req.user = userInfo.user;
-      if (req.user.status !== UserStatus.ACTIVE) {
+      if (req.user.status !== ActivityStatus.ACTIVE) {
         throw new AppError(HttpStatus.UNAUTHORIZED, AppMessages.ACCOUNT_INACTIVE);
       }
       if (roles?.length && !roles.includes(req.user.role)) {

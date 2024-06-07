@@ -45,14 +45,33 @@ const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaul
         $and: [
           {
             $or: [
-              { name: { $regex: req.query.q || "", $options: "i" } },
-              { email: { $regex: req.query.q || "", $options: "i" } },
-              { userName: { $regex: req.query.q || "", $options: "i" } },
-              { contactNumber: { $regex: req.query.q || "", $options: "i" } },
-              { licenseNumber: { $regex: req.query.q || "", $options: "i" } },
+              { name: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { email: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { userName: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { contactNumber: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { licenseNumber: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
             ],
           },
           { role: { $eq: UserRoles.DRIVER } },
+        ],
+      };
+      if (req.query.status) {
+        query.$and.push({ status: { $eq: req.query.status } });
+      }
+      return { query, queryParams };
+    case QueryBuilderKeys.VEHICLE_LIST:
+      query = {
+        $and: [
+          {
+            $or: [
+              { vehicleNumber: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { company: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { capacity: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { mfgYear: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { chassisNumber: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { regNumber: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+            ],
+          },
         ],
       };
       if (req.query.status) {
