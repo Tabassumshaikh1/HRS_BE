@@ -7,6 +7,7 @@ const schemas = {
     userName: Joi.string().required(),
     email: Joi.string().email().required(),
     contactNumber: Joi.string().required(),
+    licenseNumber: Joi.any(),
     password: Joi.string().required().min(8),
     role: Joi.string().valid(UserRoles.ADMIN, UserRoles.DRIVER, UserRoles.CUSTOMER).required(),
     profileImage: Joi.any(),
@@ -16,6 +17,16 @@ const schemas = {
   [ValidationKeys.LOGIN]: Joi.object({
     userName: Joi.string().required(),
     password: Joi.string().required().min(8),
+  }),
+
+  [ValidationKeys.UPDATE_DRIVER]: Joi.object({
+    name: Joi.string().required(),
+    userName: Joi.string().required(),
+    email: Joi.string().email().required(),
+    contactNumber: Joi.string().required(),
+    licenseNumber: Joi.any(),
+    profileImage: Joi.any(),
+    status: Joi.string().valid(UserStatus.ACTIVE, UserStatus.INACTIVE),
   }),
 };
 

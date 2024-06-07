@@ -1,5 +1,5 @@
 import { AppError } from "../classes/app-error.class";
-import { CommonConst, HttpStatus, UserStatus, ValidationKeys } from "../data/app.constants";
+import { AppMessages, CommonConst, HttpStatus, UserStatus, ValidationKeys } from "../data/app.constants";
 import { IUser } from "../interfaces/user.interface";
 import User from "../models/user.model";
 import validate from "../validators/validation";
@@ -12,6 +12,13 @@ const createUser = async (reqBody: IUser): Promise<IUser> => {
     throw new AppError(HttpStatus.BAD_REQUEST, errorMessage);
   }
 
+  const userExist: any = await User.findOne({
+    $or: [{ email: reqBody.email }, { userName: reqBody.userName }, { contactNumber: reqBody.contactNumber }],
+  });
+  if (userExist) {
+    throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.USER_EXIST);
+  }
+
   // Hashing Password before saving into DB
   const hashedPassword = await bcryptValue(reqBody.password);
 
@@ -21,6 +28,7 @@ const createUser = async (reqBody: IUser): Promise<IUser> => {
     userName: reqBody.userName || CommonConst.EMPTY_STRING,
     email: reqBody.email || CommonConst.EMPTY_STRING,
     contactNumber: reqBody.contactNumber || CommonConst.EMPTY_STRING,
+    licenseNumber: reqBody.licenseNumber || CommonConst.EMPTY_STRING,
     password: hashedPassword || CommonConst.EMPTY_STRING,
     role: reqBody.role || CommonConst.EMPTY_STRING,
     profileImage: reqBody.profileImage || null,

@@ -7,11 +7,20 @@ export enum AppMessages {
   ACCOUNT_INACTIVE = "Account is inactive, please contact to adminstrator",
   SESSION_EXPIRED = "Invalid Session/Session Expired",
   UNAUTHORIZED = "Unauthorized Access",
+  USER_EXIST = "User already exist with same username, email or contact number",
+  DRIVER_NOT_EXIST = "Driver not exist",
+}
+
+export enum SortBy {
+  ASC = "asc",
+  DESC = "desc",
 }
 
 export enum AppDefaults {
   ONE_DAY_IN_MILLISECONDS = 86400000,
   JWT_TOKEN_EXPIRES_IN = "1d",
+  SORT = "createdAt",
+  SORT_BY = SortBy.DESC,
 }
 
 export enum CommonConst {
@@ -23,6 +32,7 @@ export enum CommonConst {
 
 export enum Environment {
   DEVELOPMENT = "development",
+  UAT = "uat",
   PRODUCTION = "production",
 }
 
@@ -30,6 +40,10 @@ export enum MongooseInternalKeys {
   CAST_ERROR = "CastError",
   OBJECT_ID = "ObjectId",
   ALREADY_EXIST_ERROR_CODE = 11000,
+}
+
+export enum MongooseExcludedKeys {
+  PASSWORD = "-password",
 }
 
 export enum UserRoles {
@@ -46,10 +60,12 @@ export enum UserStatus {
 export enum Routes {
   ROOT = "/",
   AUTH = "/auth",
+  DRIVERS = "/drivers",
 }
 
 export enum Endpoints {
   ROOT = "/",
+  ID = "/:id",
   LOGIN = "/login",
   LOGOUT = "/logout",
   REGISTER = "/register",
@@ -58,10 +74,15 @@ export enum Endpoints {
 export enum ValidationKeys {
   NEW_USER = "new_user",
   LOGIN = "login",
+  UPDATE_DRIVER = "update_driver",
 }
 
 export enum SchemaNames {
   USER = "User",
+}
+
+export enum QueryBuilderKeys {
+  DRIVER_LIST = "driver_list",
 }
 
 export enum HttpStatus {

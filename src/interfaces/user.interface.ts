@@ -7,6 +7,7 @@ export interface IUser {
   contactNumber: string;
   userName: string;
   password: string;
+  licenseNumber?: string;
   role: UserRoles.ADMIN | UserRoles.DRIVER | UserRoles.CUSTOMER;
   profileImage?: string;
   status?: `${UserStatus}`;
