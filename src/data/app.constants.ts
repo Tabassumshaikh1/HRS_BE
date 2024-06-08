@@ -1,15 +1,42 @@
 export enum AppMessages {
   DEFAULT_ERROR = "An unexpected error occurred, please try again later",
   NOT_FOUND = "Resource not found",
+  DB_CONN_SUCCESS = "Connected to DB",
+  DB_CONN_FAIL = "Error accrued while connecting to DB",
+  INVALID_CREDENTIALS = "Invalid credentials",
+  ACCOUNT_INACTIVE = "Account is inactive, please contact to adminstrator",
+  SESSION_EXPIRED = "Invalid Session/Session Expired",
+  UNAUTHORIZED = "Unauthorized Access",
+  USER_EXIST = "User already exist with same username, email or contact number",
+  DRIVER_NOT_EXIST = "Driver not exist",
+  VEHICLE_NOT_EXIST = "Vehicle not exist",
+}
+
+export enum SortBy {
+  ASC = "asc",
+  DESC = "desc",
 }
 
 export enum AppDefaults {
+  ONE_DAY_IN_MILLISECONDS = 86400000,
+  JWT_TOKEN_EXPIRES_IN = "1d",
+  SORT = "createdAt",
+  SORT_BY = SortBy.DESC,
+}
+
+export enum CommonConst {
   BASE64 = "base64",
   ASCII = "ascii",
+  EMPTY_STRING = "",
+  JWT_TOKEN_PREFIX = "Bearer ",
+  Name = "name",
+  VEHICLE_NUMBER = "vehicleNumber",
+  I = "i",
 }
 
 export enum Environment {
   DEVELOPMENT = "development",
+  UAT = "uat",
   PRODUCTION = "production",
 }
 
@@ -19,15 +46,51 @@ export enum MongooseInternalKeys {
   ALREADY_EXIST_ERROR_CODE = 11000,
 }
 
+export enum MongooseExcludedKeys {
+  PASSWORD = "-password",
+}
+
 export enum UserRoles {
   ADMIN = "ADMIN",
   DRIVER = "DRIVER",
   CUSTOMER = "CUSTOMER",
 }
 
-export enum UserStatus {
+export enum ActivityStatus {
   ACTIVE = "Active",
   INACTIVE = "Inactive",
+}
+
+export enum Routes {
+  ROOT = "/",
+  AUTH = "/auth",
+  DRIVERS = "/drivers",
+  VEHICLES = "/vehicles",
+}
+
+export enum Endpoints {
+  ROOT = "/",
+  ID = "/:id",
+  LOGIN = "/login",
+  LOGOUT = "/logout",
+  REGISTER = "/register",
+}
+
+export enum ValidationKeys {
+  NEW_USER = "new_user",
+  LOGIN = "login",
+  UPDATE_DRIVER = "update_driver",
+  VEHICLE = "vehicle",
+}
+
+export enum SchemaNames {
+  USER = "User",
+  VEHICLE = "Vehicle",
+}
+
+export enum QueryBuilderKeys {
+  DRIVER_LIST = "driver_list",
+  VEHICLE_LIST = "vehicle_list",
 }
 
 export enum HttpStatus {
@@ -79,14 +142,4 @@ export enum HttpStatus {
   SERVICE_UNAVAILABLE = 503,
   GATEWAY_TIMEOUT = 504,
   HTTP_VERSION_NOT_SUPPORTED = 505,
-}
-
-export enum Routes {
-  AUTH = "/auth",
-}
-
-export enum Endpoints {
-  ROOT = "/",
-  LOGIN = "/login",
-  LOGOUT = "/logout",
 }
