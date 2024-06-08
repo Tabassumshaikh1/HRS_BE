@@ -11,7 +11,7 @@ const userSchema = new Schema<IUser>(
     licenseNumber: { type: String, required: false },
     role: { type: String, required: true },
     password: { type: String, required: true },
-    profileImage: { type: String },
+    imageUrl: { type: String },
     status: { type: String, default: ActivityStatus.INACTIVE },
   },
   {

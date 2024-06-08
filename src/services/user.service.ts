@@ -31,7 +31,7 @@ const createUser = async (reqBody: IUser): Promise<IUser> => {
     licenseNumber: reqBody.licenseNumber || CommonConst.EMPTY_STRING,
     password: hashedPassword || CommonConst.EMPTY_STRING,
     role: reqBody.role || CommonConst.EMPTY_STRING,
-    profileImage: reqBody.profileImage || null,
+    imageUrl: reqBody.imageUrl || null,
     // TODO: Default status will be Inactive change it after email verification functionality
     status: reqBody.status || ActivityStatus.ACTIVE,
   });

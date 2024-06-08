@@ -7,6 +7,7 @@ import { IVehicle } from "../interfaces/vehicle.interface";
 import Vehicle from "../models/vehicle.model";
 import validate from "../validators/validation";
 import { buildQuery } from "./util.service";
+import { removeFileFromFirebase } from "./file-upload.service";
 
 const getVehicles = async (req: Request): Promise<IListResponse> => {
   const { query, queryParams } = buildQuery(QueryBuilderKeys.VEHICLE_LIST, req, {
@@ -42,6 +43,7 @@ const createVehicle = async (reqBody: IVehicle): Promise<IVehicle> => {
     mfgYear: reqBody.mfgYear || CommonConst.EMPTY_STRING,
     chassisNumber: reqBody.chassisNumber || CommonConst.EMPTY_STRING,
     regNumber: reqBody.regNumber || CommonConst.EMPTY_STRING,
+    imageUrl: reqBody.imageUrl || CommonConst.EMPTY_STRING,
     status: reqBody.status || ActivityStatus.ACTIVE,
   });
   return await vehicle.save();
@@ -73,6 +75,9 @@ const deleteVehicle = async (id: string): Promise<any> => {
   }
 
   await Vehicle.deleteOne({ _id: id });
+  if (vehicle?.imageUrl) {
+    await removeFileFromFirebase(vehicle?.imageUrl);
+  }
   return { _id: id };
 };
 

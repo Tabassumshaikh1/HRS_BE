@@ -10,7 +10,7 @@ const schemas = {
     licenseNumber: Joi.any(),
     password: Joi.string().required().min(8),
     role: Joi.string().valid(UserRoles.ADMIN, UserRoles.DRIVER, UserRoles.CUSTOMER).required(),
-    profileImage: Joi.any(),
+    imageUrl: Joi.any(),
     status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
 
@@ -25,7 +25,7 @@ const schemas = {
     email: Joi.string().email().required(),
     contactNumber: Joi.string().required(),
     licenseNumber: Joi.any(),
-    profileImage: Joi.any(),
+    imageUrl: Joi.any(),
     status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
 
@@ -36,6 +36,7 @@ const schemas = {
     mfgYear: Joi.any(),
     chassisNumber: Joi.any(),
     regNumber: Joi.any(),
+    imageUrl: Joi.any(),
     status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
 };

@@ -8,5 +8,6 @@ export interface IVehicle {
   mfgYear?: number;
   chassisNumber?: string;
   regNumber?: string;
+  imageUrl?: string;
   status: `${ActivityStatus}`;
 }

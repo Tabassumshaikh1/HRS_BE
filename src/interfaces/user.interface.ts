@@ -9,7 +9,7 @@ export interface IUser {
   password: string;
   licenseNumber?: string;
   role: UserRoles.ADMIN | UserRoles.DRIVER | UserRoles.CUSTOMER;
-  profileImage?: string;
+  imageUrl?: string;
   status?: `${ActivityStatus}`;
   createdAt: Date;
   updatedAt: Date;

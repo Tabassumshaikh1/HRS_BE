@@ -15,6 +15,7 @@ import { IUser } from "../interfaces/user.interface";
 import User from "../models/user.model";
 import validate from "../validators/validation";
 import { buildQuery } from "./util.service";
+import { removeFileFromFirebase } from "./file-upload.service";
 
 const getDrivers = async (req: Request): Promise<IListResponse> => {
   const { query, queryParams } = buildQuery(QueryBuilderKeys.DRIVER_LIST, req, { sort: "name", sortBy: SortBy.ASC } as IQuery);
@@ -44,7 +45,7 @@ const updateDriver = async (id: string, reqBody: IUser): Promise<any> => {
     email: reqBody.email || CommonConst.EMPTY_STRING,
     contactNumber: reqBody.contactNumber || CommonConst.EMPTY_STRING,
     licenseNumber: reqBody.licenseNumber || CommonConst.EMPTY_STRING,
-    profileImage: reqBody.profileImage || CommonConst.EMPTY_STRING,
+    imageUrl: reqBody.imageUrl || CommonConst.EMPTY_STRING,
   };
   if (reqBody.status) {
     payload.status = reqBody.status;
@@ -69,6 +70,9 @@ const deleteDriver = async (id: string): Promise<any> => {
   }
 
   await User.deleteOne({ _id: id });
+  if (driver?.imageUrl) {
+    await removeFileFromFirebase(driver?.imageUrl);
+  }
   return { _id: id };
 };
 
