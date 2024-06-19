@@ -18,7 +18,7 @@ import { buildQuery } from "./util.service";
 import { removeFileFromFirebase } from "./file-upload.service";
 
 const getDrivers = async (req: Request): Promise<IListResponse> => {
-  const { query, queryParams } = buildQuery(QueryBuilderKeys.DRIVER_LIST, req, { sort: "name", sortBy: SortBy.ASC } as IQuery);
+  const { query, queryParams } = buildQuery(QueryBuilderKeys.DRIVER_LIST, req, { sort: CommonConst.Name, sortBy: SortBy.ASC } as IQuery);
 
   const drivers = await User.find(query)
     .select(MongooseExcludedKeys.PASSWORD)

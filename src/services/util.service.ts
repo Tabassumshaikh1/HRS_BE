@@ -78,7 +78,25 @@ const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaul
         query.$and.push({ status: { $eq: req.query.status } });
       }
       return { query, queryParams };
-
+    case QueryBuilderKeys.CUSTOMER_LIST:
+      query = {
+        $and: [
+          {
+            $or: [
+              { name: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { email: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { userName: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { contactNumber: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { licenseNumber: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+            ],
+          },
+          { role: { $eq: UserRoles.CUSTOMER } },
+        ],
+      };
+      if (req.query.status) {
+        query.$and.push({ status: { $eq: req.query.status } });
+      }
+      return { query, queryParams };
     default:
       return { query, queryParams };
   }

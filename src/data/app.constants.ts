@@ -12,6 +12,7 @@ export enum AppMessages {
   VEHICLE_NOT_EXIST = "Vehicle not exist",
   ONLY_IMAGE_ALLOWED = "Only image files are allowed!",
   INVALID_IMAGE = "Invalid image file",
+  CUSTOMER_NOT_EXIST = "Customer not exist",
 }
 
 export enum SortBy {
@@ -53,6 +54,7 @@ export enum MongooseInternalKeys {
 
 export enum MongooseExcludedKeys {
   PASSWORD = "-password",
+  GOOGLE_ID = "-googleId",
 }
 
 export enum UserRoles {
@@ -71,6 +73,7 @@ export enum Routes {
   AUTH = "/auth",
   DRIVERS = "/drivers",
   VEHICLES = "/vehicles",
+  CUSTOMERS = "/customers",
 }
 
 export enum Endpoints {
@@ -79,6 +82,8 @@ export enum Endpoints {
   LOGIN = "/login",
   LOGOUT = "/logout",
   REGISTER = "/register",
+  GOOGLE_SIGNIN = "/google-login",
+  UPDATE_STATUS = "/:id/status",
 }
 
 export enum ValidationKeys {
@@ -86,6 +91,7 @@ export enum ValidationKeys {
   LOGIN = "login",
   UPDATE_DRIVER = "update_driver",
   VEHICLE = "vehicle",
+  UPDATE_CUSTOMER_STATUS = "update_customer_status",
 }
 
 export enum SchemaNames {
@@ -96,6 +102,7 @@ export enum SchemaNames {
 export enum QueryBuilderKeys {
   DRIVER_LIST = "driver_list",
   VEHICLE_LIST = "vehicle_list",
+  CUSTOMER_LIST = "customer_list",
 }
 
 export enum ImageMimeType {
@@ -108,6 +115,11 @@ export enum ModuleNames {
   CUSTOMER = "customer",
   DRIVER = "driver",
   VEHICLE = "vehicle",
+}
+
+export enum AccountType {
+  LOCAL = "local",
+  GOOGLE = "google",
 }
 
 export enum HttpStatus {

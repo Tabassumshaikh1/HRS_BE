@@ -1,13 +1,23 @@
 import { Request } from "express";
 import * as jwt from "jsonwebtoken";
 import { AppError } from "../classes/app-error.class";
-import { AppDefaults, AppMessages, CommonConst, HttpStatus, ActivityStatus, ValidationKeys } from "../data/app.constants";
+import {
+  AppDefaults,
+  AppMessages,
+  CommonConst,
+  HttpStatus,
+  ActivityStatus,
+  ValidationKeys,
+  UserRoles,
+  AccountType,
+} from "../data/app.constants";
 import { ILoginCredentials } from "../interfaces/login.interface";
 import { ILoginResponse } from "../interfaces/response.interface";
 import User from "../models/user.model";
 import validate from "../validators/validation";
 import { cacheGetItem, cacheRemoveItem, cacheSetItem } from "./cache.service";
-import { compareBcryptValue } from "./util.service";
+import { bcryptValue, compareBcryptValue } from "./util.service";
+import { IUser } from "../interfaces/user.interface";
 
 const login = async (reqBody: ILoginCredentials): Promise<ILoginResponse> => {
   // Validating user before saving into DB
@@ -46,6 +56,65 @@ const login = async (reqBody: ILoginCredentials): Promise<ILoginResponse> => {
   return { token, user };
 };
 
+const signInWithGoogle = async (reqBody: IUser) => {
+  reqBody.password = reqBody.googleId as string;
+  // Validating user before saving into DB
+  const errorMessage = validate(ValidationKeys.NEW_USER, reqBody);
+  if (errorMessage) {
+    throw new AppError(HttpStatus.BAD_REQUEST, errorMessage);
+  }
+
+  // Checking is user already exist
+  let existingUser = await User.findOne({
+    $or: [{ email: reqBody.email }, { userName: reqBody.userName }, { contactNumber: reqBody.contactNumber }],
+    $and: [{ googleId: reqBody.googleId }],
+  });
+  console.log(existingUser);
+
+  if (existingUser?.id) {
+    return await login({
+      userName: reqBody.email,
+      password: reqBody.password,
+    } as ILoginCredentials);
+  } else {
+    // Hashing Password before saving into DB
+    const hashedPassword = await bcryptValue(reqBody.password);
+    console.log({
+      name: reqBody.name || CommonConst.EMPTY_STRING,
+      userName: reqBody.userName || CommonConst.EMPTY_STRING,
+      email: reqBody.email || CommonConst.EMPTY_STRING,
+      contactNumber: reqBody.contactNumber || CommonConst.EMPTY_STRING,
+      licenseNumber: reqBody.licenseNumber || CommonConst.EMPTY_STRING,
+      password: hashedPassword || CommonConst.EMPTY_STRING,
+      role: UserRoles.CUSTOMER,
+      imageUrl: reqBody.imageUrl || null,
+      googleId: reqBody.googleId || CommonConst.EMPTY_STRING,
+      accountType: AccountType.GOOGLE,
+      status: ActivityStatus.ACTIVE,
+    });
+
+    // Saving data in DB
+    const user = new User({
+      name: reqBody.name || CommonConst.EMPTY_STRING,
+      userName: reqBody.userName || CommonConst.EMPTY_STRING,
+      email: reqBody.email || CommonConst.EMPTY_STRING,
+      contactNumber: reqBody.contactNumber || CommonConst.EMPTY_STRING,
+      licenseNumber: reqBody.licenseNumber || CommonConst.EMPTY_STRING,
+      password: hashedPassword || CommonConst.EMPTY_STRING,
+      role: UserRoles.CUSTOMER,
+      imageUrl: reqBody.imageUrl || null,
+      googleId: reqBody.googleId || CommonConst.EMPTY_STRING,
+      accountType: AccountType.GOOGLE,
+      status: ActivityStatus.ACTIVE,
+    });
+    await user.save();
+    return await login({
+      userName: reqBody.email,
+      password: reqBody.password,
+    } as ILoginCredentials);
+  }
+};
+
 const logout = (req: Request) => {
   if (req.user._id) {
     // Removing token from cache
@@ -54,4 +123,4 @@ const logout = (req: Request) => {
   return true;
 };
 
-export { login, logout };
+export { login, logout, signInWithGoogle };

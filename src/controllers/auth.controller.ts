@@ -2,7 +2,7 @@ import { Request, Response, Router, request } from "express";
 import AsyncHandler from "express-async-handler";
 import { AppMessages, Endpoints, HttpStatus, ModuleNames, UserRoles } from "../data/app.constants";
 import Auth from "../middleware/auth.middleware";
-import { login, logout } from "../services/auth.service";
+import { login, logout, signInWithGoogle } from "../services/auth.service";
 import { createUser } from "../services/user.service";
 import { uploadFileOnFirebase } from "../services/file-upload.service";
 import { AppError } from "../classes/app-error.class";
@@ -31,6 +31,15 @@ authController.post(
   Endpoints.LOGIN,
   AsyncHandler(async (req: Request, res: Response) => {
     const response = await login(req.body);
+    res.status(HttpStatus.OK).json(response);
+  })
+);
+
+authController.post(
+  Endpoints.GOOGLE_SIGNIN,
+  AsyncHandler(async (req: Request, res: Response) => {
+    req.body.role = UserRoles.CUSTOMER;
+    const response = await signInWithGoogle(req.body);
     res.status(HttpStatus.OK).json(response);
   })
 );
