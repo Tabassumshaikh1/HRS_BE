@@ -19,17 +19,17 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "New Driver",
+									"value": "Admin",
 									"type": "text"
 								},
 								{
 									"key": "userName",
-									"value": "driver3@123",
+									"value": "admin@123",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "driver3@gmail.com",
+									"value": "admin@hrs.com",
 									"type": "text"
 								},
 								{
@@ -65,13 +65,42 @@
 					"response": []
 				},
 				{
+					"name": "Google SignIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Amir khan\",\r\n    \"email\": \"khanmdamir062@gmail.com\",\r\n    \"googleId\": \"Mk4VsnJY3lab5UeOtBOnYDZIPEq2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/google-login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"google-login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Login",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userName\": \"amir@123\",\r\n    \"password\": \"12345678\"\r\n}",
+							"raw": "{\r\n    \"userName\": \"admin@123\",\r\n    \"password\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -560,6 +589,113 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Get Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/customers?page=1&limit=10&sort=vehicleNumber&sortBy=asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"customers"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "MH01TA1001",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Active",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "sort",
+									"value": "vehicleNumber"
+								},
+								{
+									"key": "sortBy",
+									"value": "asc"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/customers/6672f6125b94964e2972bba7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"customers",
+								"6672f6125b94964e2972bba7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Inactive\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/customers/6672f6125b94964e2972bba7/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"customers",
+								"6672f6125b94964e2972bba7",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
@@ -567,7 +703,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjYwOWE1YzEyODk5MmI2YmRjOTRjNTciLCJpYXQiOjE3MTc4Njg4MDQsImV4cCI6MTcxNzk1NTIwNH0.Hb_TR-f9CMWGZMWLjoIg7ZU00bG6VjYybgqnH-AWwFc",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MTg4MTA4OTMsImV4cCI6MTcxODg5NzI5M30.OOPajQ2eOsto4hr0rstiGb1WiX-_J5JHKlY7pLBcdLU",
 				"type": "string"
 			}
 		]
