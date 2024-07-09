@@ -15,13 +15,39 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Md. Amir\",\r\n    \"userName\": \"amir@123\",\r\n    \"email\": \"amir@email.com\",\r\n    \"contactNumber\": \"9876543210\",\r\n    \"password\": \"12345678\",\r\n    \"profileImage\": null\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "userName",
+									"value": "admin@123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "admin@hrs.com",
+									"type": "text"
+								},
+								{
+									"key": "contactNumber",
+									"value": "9213443951",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/md.amir/Downloads/Amazon-Logo.png"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:5000/auth/register",
@@ -39,13 +65,42 @@
 					"response": []
 				},
 				{
+					"name": "Google SignIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Amir khan\",\r\n    \"email\": \"khanmdamir062@gmail.com\",\r\n    \"googleId\": \"Mk4VsnJY3lab5UeOtBOnYDZIPEq2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/google-login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"google-login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Login",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userName\": \"amir@123\",\r\n    \"password\": \"12345678\"\r\n}",
+							"raw": "{\r\n    \"userName\": \"admin@123\",\r\n    \"password\": \"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -108,13 +163,44 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Driver 3\",\r\n    \"userName\": \"driver3@123\",\r\n    \"email\": \"driver3@email.com\",\r\n    \"contactNumber\": \"9213443951\",\r\n    \"licenseNumber\": \"12345\",\r\n    \"password\": \"12345678\",\r\n    \"profileImage\": null\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Driver 10",
+									"type": "text"
+								},
+								{
+									"key": "userName",
+									"value": "driver10@123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "driver10@email.com",
+									"type": "text"
+								},
+								{
+									"key": "contactNumber",
+									"value": "9213410951",
+									"type": "text"
+								},
+								{
+									"key": "licenseNumber",
+									"value": "12345",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/md.amir/Downloads/Facebook-Logo-500x281.png"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:5000/drivers",
@@ -207,16 +293,52 @@
 						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Driver 3\",\r\n    \"userName\": \"driver4@123\",\r\n    \"email\": \"driver3@email.com\",\r\n    \"contactNumber\": \"9213443444\",\r\n    \"licenseNumber\": \"1234567890\",\r\n    \"password\": \"12345678\",\r\n    \"profileImage\": \"Test111\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Driver 3",
+									"type": "text"
+								},
+								{
+									"key": "userName",
+									"value": "driver4@123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "driver3@email.com",
+									"type": "text"
+								},
+								{
+									"key": "contactNumber",
+									"value": "9213443444",
+									"type": "text"
+								},
+								{
+									"key": "licenseNumber",
+									"value": "1234567890",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "profileImage",
+									"value": "Test111",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/md.amir/Downloads/google-logo-9831.png"
 								}
-							}
+							]
 						},
 						"url": {
-							"raw": "http://localhost:5000/drivers/666301e063af562be8fe3402",
+							"raw": "http://localhost:5000/drivers/66641229f2a83f40ac342ee2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -224,7 +346,7 @@
 							"port": "5000",
 							"path": [
 								"drivers",
-								"666301e063af562be8fe3402"
+								"66641229f2a83f40ac342ee2"
 							]
 						}
 					},
@@ -313,13 +435,44 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"vehicleNumber\": \"MH99TA1001\",\r\n    \"company\": \"Tata\",\r\n    \"capacity\": \"6000\",\r\n    \"mfgYear\": \"2015\",\r\n    \"chassisNumber\": \"\",\r\n    \"regNumber\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "vehicleNumber",
+									"value": "MH99TA1001",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "Eicher",
+									"type": "text"
+								},
+								{
+									"key": "capacity",
+									"value": "212",
+									"type": "text"
+								},
+								{
+									"key": "mfgYear",
+									"value": "2020",
+									"type": "text"
+								},
+								{
+									"key": "chassisNumber",
+									"value": "666633",
+									"type": "text"
+								},
+								{
+									"key": "regNumber",
+									"value": "666633",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/md.amir/Downloads/Amazon-Logo.png"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:5000/vehicles",
@@ -361,16 +514,47 @@
 						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"vehicleNumber\": \"MH01TA1001\",\r\n    \"company\": \"Tata\",\r\n    \"capacity\": \"6000\",\r\n    \"mfgYear\": \"2015\",\r\n    \"chassisNumber\": \"87\",\r\n    \"regNumber\": \"887\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "vehicleNumber",
+									"value": "MH99TA1008",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "Eicher",
+									"type": "text"
+								},
+								{
+									"key": "capacity",
+									"value": "212",
+									"type": "text"
+								},
+								{
+									"key": "mfgYear",
+									"value": "2020",
+									"type": "text"
+								},
+								{
+									"key": "chassisNumber",
+									"value": "232323",
+									"type": "text"
+								},
+								{
+									"key": "regNumber",
+									"value": "232323",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/md.amir/Downloads/Apple-Logo.png"
 								}
-							}
+							]
 						},
 						"url": {
-							"raw": "http://localhost:5000/vehicles/666332c1f4bcc8de0fd15a2e",
+							"raw": "http://localhost:5000/vehicles/666415e5d902b62e311f2a03",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -378,7 +562,7 @@
 							"port": "5000",
 							"path": [
 								"vehicles",
-								"666332c1f4bcc8de0fd15a2e"
+								"666415e5d902b62e311f2a03"
 							]
 						}
 					},
@@ -390,7 +574,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/vehicles/66633514343d3093c77ecdf6",
+							"raw": "http://localhost:5000/vehicles/666499c32a6e011c01a24d78",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -398,7 +582,114 @@
 							"port": "5000",
 							"path": [
 								"vehicles",
-								"66633514343d3093c77ecdf6"
+								"666499c32a6e011c01a24d78"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Get Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/customers?page=1&limit=10&sort=vehicleNumber&sortBy=asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"customers"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "MH01TA1001",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Active",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "sort",
+									"value": "vehicleNumber"
+								},
+								{
+									"key": "sortBy",
+									"value": "asc"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/customers/6672f6125b94964e2972bba7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"customers",
+								"6672f6125b94964e2972bba7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Inactive\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/customers/6672f6125b94964e2972bba7/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"customers",
+								"6672f6125b94964e2972bba7",
+								"status"
 							]
 						}
 					},
@@ -412,7 +703,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjYwOWE1YzEyODk5MmI2YmRjOTRjNTciLCJpYXQiOjE3MTc3NjczNDQsImV4cCI6MTcxNzg1Mzc0NH0.nJglKq9lripp78ZeGDOgxausZYwfpF7x_fFA8GifK7o",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MTg4MTA4OTMsImV4cCI6MTcxODg5NzI5M30.OOPajQ2eOsto4hr0rstiGb1WiX-_J5JHKlY7pLBcdLU",
 				"type": "string"
 			}
 		]

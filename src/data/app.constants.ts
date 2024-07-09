@@ -1,8 +1,8 @@
 export enum AppMessages {
   DEFAULT_ERROR = "An unexpected error occurred, please try again later",
-  NOT_FOUND = "Resource not found",
+  NOT_FOUND = "Not found",
   DB_CONN_SUCCESS = "Connected to DB",
-  DB_CONN_FAIL = "Error accrued while connecting to DB",
+  DB_CONN_FAIL = "Error occured while connecting to DB",
   INVALID_CREDENTIALS = "Invalid credentials",
   ACCOUNT_INACTIVE = "Account is inactive, please contact to adminstrator",
   SESSION_EXPIRED = "Invalid Session/Session Expired",
@@ -10,6 +10,9 @@ export enum AppMessages {
   USER_EXIST = "User already exist with same username, email or contact number",
   DRIVER_NOT_EXIST = "Driver not exist",
   VEHICLE_NOT_EXIST = "Vehicle not exist",
+  ONLY_IMAGE_ALLOWED = "Only image files are allowed!",
+  INVALID_IMAGE = "Invalid image file",
+  CUSTOMER_NOT_EXIST = "Customer not exist",
 }
 
 export enum SortBy {
@@ -22,12 +25,15 @@ export enum AppDefaults {
   JWT_TOKEN_EXPIRES_IN = "1d",
   SORT = "createdAt",
   SORT_BY = SortBy.DESC,
+  FILE_SIZE_LIMIT = 2097152, // keep images size < 2 MB
+  REQ_FILE_KEY = "file",
 }
 
 export enum CommonConst {
   BASE64 = "base64",
   ASCII = "ascii",
   EMPTY_STRING = "",
+  EMPTY_SPACE = " ",
   JWT_TOKEN_PREFIX = "Bearer ",
   Name = "name",
   VEHICLE_NUMBER = "vehicleNumber",
@@ -48,6 +54,7 @@ export enum MongooseInternalKeys {
 
 export enum MongooseExcludedKeys {
   PASSWORD = "-password",
+  GOOGLE_ID = "-googleId",
 }
 
 export enum UserRoles {
@@ -66,6 +73,7 @@ export enum Routes {
   AUTH = "/auth",
   DRIVERS = "/drivers",
   VEHICLES = "/vehicles",
+  CUSTOMERS = "/customers",
 }
 
 export enum Endpoints {
@@ -74,6 +82,8 @@ export enum Endpoints {
   LOGIN = "/login",
   LOGOUT = "/logout",
   REGISTER = "/register",
+  GOOGLE_SIGNIN = "/google-login",
+  UPDATE_STATUS = "/:id/status",
 }
 
 export enum ValidationKeys {
@@ -81,6 +91,7 @@ export enum ValidationKeys {
   LOGIN = "login",
   UPDATE_DRIVER = "update_driver",
   VEHICLE = "vehicle",
+  UPDATE_CUSTOMER_STATUS = "update_customer_status",
 }
 
 export enum SchemaNames {
@@ -91,6 +102,24 @@ export enum SchemaNames {
 export enum QueryBuilderKeys {
   DRIVER_LIST = "driver_list",
   VEHICLE_LIST = "vehicle_list",
+  CUSTOMER_LIST = "customer_list",
+}
+
+export enum ImageMimeType {
+  "image/png" = "png",
+  "image/jpeg" = "jpg",
+  "image/jpg" = "jpg",
+}
+
+export enum ModuleNames {
+  CUSTOMER = "customer",
+  DRIVER = "driver",
+  VEHICLE = "vehicle",
+}
+
+export enum AccountType {
+  LOCAL = "local",
+  GOOGLE = "google",
 }
 
 export enum HttpStatus {

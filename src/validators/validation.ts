@@ -4,13 +4,14 @@ import { UserRoles, ActivityStatus, ValidationKeys } from "../data/app.constants
 const schemas = {
   [ValidationKeys.NEW_USER]: Joi.object({
     name: Joi.string().required(),
-    userName: Joi.string().required(),
+    userName: Joi.any(),
     email: Joi.string().email().required(),
-    contactNumber: Joi.string().required(),
+    contactNumber: Joi.any(),
     licenseNumber: Joi.any(),
     password: Joi.string().required().min(8),
+    googleId: Joi.any(),
     role: Joi.string().valid(UserRoles.ADMIN, UserRoles.DRIVER, UserRoles.CUSTOMER).required(),
-    profileImage: Joi.any(),
+    imageUrl: Joi.any(),
     status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
 
@@ -25,7 +26,7 @@ const schemas = {
     email: Joi.string().email().required(),
     contactNumber: Joi.string().required(),
     licenseNumber: Joi.any(),
-    profileImage: Joi.any(),
+    imageUrl: Joi.any(),
     status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
 
@@ -36,7 +37,11 @@ const schemas = {
     mfgYear: Joi.any(),
     chassisNumber: Joi.any(),
     regNumber: Joi.any(),
+    imageUrl: Joi.any(),
     status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
+  }),
+  [ValidationKeys.UPDATE_CUSTOMER_STATUS]: Joi.object({
+    status: Joi.string().required().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
 };
 

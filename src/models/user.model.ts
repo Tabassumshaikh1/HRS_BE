@@ -1,17 +1,19 @@
 import { Schema, model } from "mongoose";
-import { SchemaNames, ActivityStatus } from "../data/app.constants";
+import { SchemaNames, ActivityStatus, AccountType } from "../data/app.constants";
 import { IUser } from "../interfaces/user.interface";
 
 const userSchema = new Schema<IUser>(
   {
     name: { type: String, required: true },
-    userName: { type: String, required: true, unique: true },
-    email: { type: String, required: true, unique: true },
-    contactNumber: { type: String, required: true, unique: true },
-    licenseNumber: { type: String, required: false },
+    userName: { type: String },
+    email: { type: String, required: true },
+    contactNumber: { type: String },
+    licenseNumber: { type: String },
     role: { type: String, required: true },
     password: { type: String, required: true },
-    profileImage: { type: String },
+    imageUrl: { type: String },
+    googleId: { type: String },
+    accountType: { type: String, default: AccountType.LOCAL },
     status: { type: String, default: ActivityStatus.INACTIVE },
   },
   {
