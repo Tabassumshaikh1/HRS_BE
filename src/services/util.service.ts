@@ -96,6 +96,9 @@ const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaul
       if (req.query.status) {
         query.$and.push({ status: { $eq: req.query.status } });
       }
+      if (req.query.accountType) {
+        query.$and.push({ accountType: { $eq: req.query.accountType } });
+      }
       return { query, queryParams };
     default:
       return { query, queryParams };

@@ -11,6 +11,6 @@ const routes = Router();
 routes.use(Routes.AUTH, authController);
 routes.use(Routes.DRIVERS, Auth([UserRoles.ADMIN]), driverController);
 routes.use(Routes.VEHICLES, vehicleController);
-routes.use(Routes.CUSTOMERS, customerController);
+routes.use(Routes.CUSTOMERS, Auth([UserRoles.ADMIN]), customerController);
 
 export default routes;
