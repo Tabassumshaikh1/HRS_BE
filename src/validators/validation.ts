@@ -43,6 +43,9 @@ const schemas = {
   [ValidationKeys.UPDATE_USER_STATUS]: Joi.object({
     status: Joi.string().required().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
+  [ValidationKeys.VEHICLE_TYPE]: Joi.object({
+    name: Joi.string().required()
+  }),
 };
 
 const validate = (key: `${ValidationKeys}`, reqBody: any): boolean | string => {

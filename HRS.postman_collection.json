@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "af3ad98f-07c0-4510-993c-2ec2f68cca10",
+		"_postman_id": "93adb742-3ab8-4deb-bede-d614c17c3902",
 		"name": "HRS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36149555"
+		"_exporter_id": "24530830"
 	},
 	"item": [
 		{
@@ -718,6 +718,154 @@
 								"customers",
 								"6672f6125b94964e2972bba7",
 								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vehicle type",
+			"item": [
+				{
+					"name": "Delete vehicle type",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/vehicle-type/66a271956b1804f9cd99227e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"vehicle-type",
+								"66a271956b1804f9cd99227e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add vehicle type",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Truck\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/vehicle-type",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"vehicle-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update vehicle type",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Truck1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/vehicle-type/66a271956b1804f9cd99227e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"vehicle-type",
+								"66a271956b1804f9cd99227e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single vehicle type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/vehicle-type/66a271956b1804f9cd99227e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"vehicle-type",
+								"66a271956b1804f9cd99227e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get vehicle types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/vehicle-type?page=1&limit=10&sort=createdAt&sortBy=desc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"vehicle-type"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt"
+								},
+								{
+									"key": "sortBy",
+									"value": "desc"
+								}
 							]
 						}
 					},

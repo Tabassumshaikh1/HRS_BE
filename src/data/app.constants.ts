@@ -13,6 +13,7 @@ export enum AppMessages {
   ONLY_IMAGE_ALLOWED = "Only image files are allowed!",
   INVALID_IMAGE = "Invalid image file",
   CUSTOMER_NOT_EXIST = "Customer not exist",
+  VEHICLE_TYPE_NOT_EXIST = "Vehicle type not exists"
 }
 
 export enum SortBy {
@@ -74,6 +75,7 @@ export enum Routes {
   DRIVERS = "/drivers",
   VEHICLES = "/vehicles",
   CUSTOMERS = "/customers",
+  VEHICLETYPE = "/vehicle-type"
 }
 
 export enum Endpoints {
@@ -84,6 +86,7 @@ export enum Endpoints {
   REGISTER = "/register",
   GOOGLE_SIGNIN = "/google-login",
   UPDATE_STATUS = "/:id/status",
+  ADD_VEH_NAME ="/add-vehicle-name"
 }
 
 export enum ValidationKeys {
@@ -91,18 +94,21 @@ export enum ValidationKeys {
   LOGIN = "login",
   UPDATE_DRIVER = "update_driver",
   VEHICLE = "vehicle",
+  VEHICLE_TYPE = "vehicle_type",
   UPDATE_USER_STATUS = "update_user_status",
 }
 
 export enum SchemaNames {
   USER = "User",
   VEHICLE = "Vehicle",
+  VEHICLETYPE = "Vehicle_type"
 }
 
 export enum QueryBuilderKeys {
   DRIVER_LIST = "driver_list",
   VEHICLE_LIST = "vehicle_list",
   CUSTOMER_LIST = "customer_list",
+  VEHICLE_TYPE_LIST = "vehicle_type_list"
 }
 
 export enum ImageMimeType {
