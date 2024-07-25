@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 import AsyncHandler from "express-async-handler";
 import { AppMessages, Endpoints, HttpStatus, ModuleNames, UserRoles } from "../data/app.constants";
 import { createUser } from "../services/user.service";
-import { deleteDriver, getDrivers, getSingleDriver, updateDriver } from "../services/driver.service";
+import { deleteDriver, getDrivers, getSingleDriver, updateDriver, updateDriverStatus } from "../services/driver.service";
 import { AppError } from "../classes/app-error.class";
 import { removeFileFromFirebase, uploadFileOnFirebase } from "../services/file-upload.service";
 import imageValidator from "../validators/image.validator";
@@ -63,6 +63,14 @@ driverController.put(
     }
     req.body.imageUrl = uploadedFileUrl;
     const response = await updateDriver(req.params.id, req.body);
+    res.status(HttpStatus.OK).json(response);
+  })
+);
+
+driverController.put(
+  Endpoints.UPDATE_STATUS,
+  AsyncHandler(async (req: Request, res: Response) => {
+    const response = await updateDriverStatus(req.params.id, req.body);
     res.status(HttpStatus.OK).json(response);
   })
 );

@@ -91,7 +91,7 @@ export enum ValidationKeys {
   LOGIN = "login",
   UPDATE_DRIVER = "update_driver",
   VEHICLE = "vehicle",
-  UPDATE_CUSTOMER_STATUS = "update_customer_status",
+  UPDATE_USER_STATUS = "update_user_status",
 }
 
 export enum SchemaNames {

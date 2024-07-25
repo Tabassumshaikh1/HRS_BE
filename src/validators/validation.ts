@@ -40,7 +40,7 @@ const schemas = {
     imageUrl: Joi.any(),
     status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
-  [ValidationKeys.UPDATE_CUSTOMER_STATUS]: Joi.object({
+  [ValidationKeys.UPDATE_USER_STATUS]: Joi.object({
     status: Joi.string().required().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
 };
