@@ -198,7 +198,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/md.amir/Downloads/Facebook-Logo-500x281.png"
+									"src": "/C:/Users/md.amir/Downloads/download.png"
 								}
 							]
 						},
@@ -347,6 +347,36 @@
 							"path": [
 								"drivers",
 								"66641229f2a83f40ac342ee2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Driver Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Inactive\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/drivers/6672f6125b94964e2972bba7/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"drivers",
+								"6672f6125b94964e2972bba7",
+								"status"
 							]
 						}
 					},
@@ -599,7 +629,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/customers?page=1&limit=10&sort=vehicleNumber&sortBy=asc",
+							"raw": "http://localhost:5000/customers?status=Active&page=1&limit=10&sort=vehicleNumber&sortBy=asc&accountType=google",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -616,8 +646,7 @@
 								},
 								{
 									"key": "status",
-									"value": "Active",
-									"disabled": true
+									"value": "Active"
 								},
 								{
 									"key": "page",
@@ -636,9 +665,8 @@
 									"value": "asc"
 								},
 								{
-									"key": "",
-									"value": "",
-									"disabled": true
+									"key": "accountType",
+									"value": "google"
 								}
 							]
 						}
@@ -703,7 +731,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MTg4MTA4OTMsImV4cCI6MTcxODg5NzI5M30.OOPajQ2eOsto4hr0rstiGb1WiX-_J5JHKlY7pLBcdLU",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjE4ODg3ODYsImV4cCI6MTcyMTk3NTE4Nn0.wPPregcY3XlyguaT1u2XrU7dDsKGq_fga2K6WXCuFfI",
 				"type": "string"
 			}
 		]
