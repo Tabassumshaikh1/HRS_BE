@@ -65,6 +65,10 @@ const updateVehicle = async (id: string, reqBody: IVehicle): Promise<any> => {
     throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.VEHICLE_NOT_EXIST);
   }
 
+  if (!reqBody.imageUrl) {
+    delete reqBody.imageUrl;
+  }
+
   return await Vehicle.findByIdAndUpdate(id, reqBody);
 };
 

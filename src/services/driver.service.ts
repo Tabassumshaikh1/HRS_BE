@@ -45,8 +45,10 @@ const updateDriver = async (id: string, reqBody: IUser): Promise<any> => {
     email: reqBody.email || CommonConst.EMPTY_STRING,
     contactNumber: reqBody.contactNumber || CommonConst.EMPTY_STRING,
     licenseNumber: reqBody.licenseNumber || CommonConst.EMPTY_STRING,
-    imageUrl: reqBody.imageUrl || CommonConst.EMPTY_STRING,
   };
+  if (reqBody.imageUrl) {
+    payload.imageUrl = reqBody.imageUrl;
+  }
   if (reqBody.status) {
     payload.status = reqBody.status;
   }
@@ -58,6 +60,24 @@ const updateDriver = async (id: string, reqBody: IUser): Promise<any> => {
   const driver = await getSingleDriver(id);
   if (!driver) {
     throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.DRIVER_NOT_EXIST);
+  }
+
+  return await User.findByIdAndUpdate(id, payload);
+};
+
+const updateDriverStatus = async (id: string, reqBody: IUser): Promise<any> => {
+  const payload: any = {
+    status: reqBody.status || CommonConst.EMPTY_STRING,
+  };
+
+  const errorMessage = validate(ValidationKeys.UPDATE_USER_STATUS, payload);
+  if (errorMessage) {
+    throw new AppError(HttpStatus.BAD_REQUEST, errorMessage);
+  }
+
+  const driver = await getSingleDriver(id);
+  if (!driver) {
+    throw new AppError(HttpStatus.NOT_FOUND, AppMessages.DRIVER_NOT_EXIST);
   }
 
   return await User.findByIdAndUpdate(id, payload);
@@ -76,4 +96,4 @@ const deleteDriver = async (id: string): Promise<any> => {
   return { _id: id };
 };
 
-export { deleteDriver, getDrivers, getSingleDriver, updateDriver };
+export { deleteDriver, getDrivers, getSingleDriver, updateDriverStatus, updateDriver };

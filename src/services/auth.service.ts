@@ -69,7 +69,6 @@ const signInWithGoogle = async (reqBody: IUser) => {
     $or: [{ email: reqBody.email }, { userName: reqBody.userName }, { contactNumber: reqBody.contactNumber }],
     $and: [{ googleId: reqBody.googleId }],
   });
-  console.log(existingUser);
 
   if (existingUser?.id) {
     return await login({
@@ -79,19 +78,6 @@ const signInWithGoogle = async (reqBody: IUser) => {
   } else {
     // Hashing Password before saving into DB
     const hashedPassword = await bcryptValue(reqBody.password);
-    console.log({
-      name: reqBody.name || CommonConst.EMPTY_STRING,
-      userName: reqBody.userName || CommonConst.EMPTY_STRING,
-      email: reqBody.email || CommonConst.EMPTY_STRING,
-      contactNumber: reqBody.contactNumber || CommonConst.EMPTY_STRING,
-      licenseNumber: reqBody.licenseNumber || CommonConst.EMPTY_STRING,
-      password: hashedPassword || CommonConst.EMPTY_STRING,
-      role: UserRoles.CUSTOMER,
-      imageUrl: reqBody.imageUrl || null,
-      googleId: reqBody.googleId || CommonConst.EMPTY_STRING,
-      accountType: AccountType.GOOGLE,
-      status: ActivityStatus.ACTIVE,
-    });
 
     // Saving data in DB
     const user = new User({
