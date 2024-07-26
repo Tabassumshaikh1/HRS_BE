@@ -1,15 +1,15 @@
 import { Schema, model } from "mongoose";
 import { SchemaNames } from "../data/app.constants";
-import { IVehicleType } from "../interfaces/vehicleType.interface";
+import { IVehicleType } from "../interfaces/vehicle-type.interface";
 
 const vehicleTypeSchema = new Schema<IVehicleType>(
   {
-    name: { type: String, required: true, unique: true }
+    name: { type: String, required: true, unique: true },
   },
   {
     timestamps: true,
   }
 );
 
-const VehicleType = model<IVehicleType>(SchemaNames.VEHICLETYPE, vehicleTypeSchema);
+const VehicleType = model<IVehicleType>(SchemaNames.VEHICLE_TYPE, vehicleTypeSchema);
 export default VehicleType;
