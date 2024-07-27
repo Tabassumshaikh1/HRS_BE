@@ -34,6 +34,7 @@ const schemas = {
     vehicleNumber: Joi.string().required(),
     company: Joi.string().required(),
     capacity: Joi.string().required(),
+    vehicleType: Joi.string().required(),
     mfgYear: Joi.any(),
     chassisNumber: Joi.any(),
     regNumber: Joi.any(),
@@ -44,7 +45,7 @@ const schemas = {
     status: Joi.string().required().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
   [ValidationKeys.VEHICLE_TYPE]: Joi.object({
-    name: Joi.string().required()
+    name: Joi.string().required(),
   }),
 };
 

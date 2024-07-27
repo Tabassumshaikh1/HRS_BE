@@ -1,6 +1,15 @@
 import { Request } from "express";
 import { AppError } from "../classes/app-error.class";
-import { ActivityStatus, AppMessages, CommonConst, HttpStatus, QueryBuilderKeys, SortBy, ValidationKeys } from "../data/app.constants";
+import {
+  ActivityStatus,
+  AppMessages,
+  CommonConst,
+  HttpStatus,
+  PopulateKeys,
+  QueryBuilderKeys,
+  SortBy,
+  ValidationKeys,
+} from "../data/app.constants";
 import { IQuery } from "../interfaces/query.interface";
 import { IListResponse } from "../interfaces/response.interface";
 import { IVehicle } from "../interfaces/vehicle.interface";
@@ -16,6 +25,7 @@ const getVehicles = async (req: Request): Promise<IListResponse> => {
   } as IQuery);
 
   const vehicles = await Vehicle.find(query)
+    .populate(PopulateKeys.VEHICLE_TYPE)
     .sort([[queryParams.sort, queryParams.sortBy]])
     .skip(queryParams.page * queryParams.limit)
     .limit(queryParams.limit);
@@ -40,17 +50,18 @@ const createVehicle = async (reqBody: IVehicle): Promise<IVehicle> => {
     vehicleNumber: reqBody.vehicleNumber || CommonConst.EMPTY_STRING,
     company: reqBody.company || CommonConst.EMPTY_STRING,
     capacity: reqBody.capacity || CommonConst.EMPTY_STRING,
+    vehicleType: reqBody.vehicleType || CommonConst.EMPTY_STRING,
     mfgYear: reqBody.mfgYear || CommonConst.EMPTY_STRING,
     chassisNumber: reqBody.chassisNumber || CommonConst.EMPTY_STRING,
     regNumber: reqBody.regNumber || CommonConst.EMPTY_STRING,
     imageUrl: reqBody.imageUrl || CommonConst.EMPTY_STRING,
     status: reqBody.status || ActivityStatus.ACTIVE,
   });
-  return await vehicle.save();
+  return (await vehicle.save()).populate(PopulateKeys.VEHICLE_TYPE);
 };
 
 const getSingleVehicle = async (id: string): Promise<IVehicle | null> => {
-  return await Vehicle.findOne({ _id: id });
+  return await Vehicle.findOne({ _id: id }).populate(PopulateKeys.VEHICLE_TYPE);
 };
 
 const updateVehicle = async (id: string, reqBody: IVehicle): Promise<any> => {
@@ -69,7 +80,7 @@ const updateVehicle = async (id: string, reqBody: IVehicle): Promise<any> => {
     delete reqBody.imageUrl;
   }
 
-  return await Vehicle.findByIdAndUpdate(id, reqBody);
+  return await Vehicle.findByIdAndUpdate(id, reqBody).populate(PopulateKeys.VEHICLE_TYPE);
 };
 
 const deleteVehicle = async (id: string): Promise<any> => {

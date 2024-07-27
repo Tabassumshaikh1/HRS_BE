@@ -13,7 +13,8 @@ export enum AppMessages {
   ONLY_IMAGE_ALLOWED = "Only image files are allowed!",
   INVALID_IMAGE = "Invalid image file",
   CUSTOMER_NOT_EXIST = "Customer not exist",
-  VEHICLE_TYPE_NOT_EXIST = "Vehicle type not exists"
+  VEHICLE_TYPE_NOT_EXIST = "Vehicle type not exists",
+  VEHICLE_WITH_VEHICLE_TYPE = "There are some vehicles associated with this vehicle type, Please delete them first",
 }
 
 export enum SortBy {
@@ -75,7 +76,7 @@ export enum Routes {
   DRIVERS = "/drivers",
   VEHICLES = "/vehicles",
   CUSTOMERS = "/customers",
-  VEHICLETYPE = "/vehicle-type"
+  VEHICLETYPE = "/vehicle-type",
 }
 
 export enum Endpoints {
@@ -86,7 +87,7 @@ export enum Endpoints {
   REGISTER = "/register",
   GOOGLE_SIGNIN = "/google-login",
   UPDATE_STATUS = "/:id/status",
-  ADD_VEH_NAME ="/add-vehicle-name"
+  ADD_VEH_NAME = "/add-vehicle-name",
 }
 
 export enum ValidationKeys {
@@ -101,14 +102,14 @@ export enum ValidationKeys {
 export enum SchemaNames {
   USER = "User",
   VEHICLE = "Vehicle",
-  VEHICLETYPE = "Vehicle_type"
+  VEHICLE_TYPE = "Vehicle_type",
 }
 
 export enum QueryBuilderKeys {
   DRIVER_LIST = "driver_list",
   VEHICLE_LIST = "vehicle_list",
   CUSTOMER_LIST = "customer_list",
-  VEHICLE_TYPE_LIST = "vehicle_type_list"
+  VEHICLE_TYPE_LIST = "vehicle_type_list",
 }
 
 export enum ImageMimeType {
@@ -126,6 +127,10 @@ export enum ModuleNames {
 export enum AccountType {
   LOCAL = "local",
   GOOGLE = "google",
+}
+
+export enum PopulateKeys {
+  VEHICLE_TYPE = "vehicleType",
 }
 
 export enum HttpStatus {
