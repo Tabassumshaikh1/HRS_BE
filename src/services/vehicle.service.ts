@@ -95,5 +95,21 @@ const deleteVehicle = async (id: string): Promise<any> => {
   }
   return { _id: id };
 };
+const updateVehicleStatus = async (id: string, reqBody: IVehicle): Promise<any> => {
+  const payload: any = {
+    status: reqBody.status || CommonConst.EMPTY_STRING,
+  };
 
-export { createVehicle, deleteVehicle, getSingleVehicle, getVehicles, updateVehicle };
+  const errorMessage = validate(ValidationKeys.UPDATE_USER_STATUS, payload);
+  if (errorMessage) {
+    throw new AppError(HttpStatus.BAD_REQUEST, errorMessage);
+  }
+
+  const driver = await getSingleVehicle(id);
+  if (!driver) {
+    throw new AppError(HttpStatus.NOT_FOUND, AppMessages.DRIVER_NOT_EXIST);
+  }
+
+  return await Vehicle.findByIdAndUpdate(id, payload);
+};
+export { createVehicle, deleteVehicle, getSingleVehicle, getVehicles, updateVehicle,updateVehicleStatus };

@@ -1,8 +1,8 @@
 import { Request, Response, Router } from "express";
 import AsyncHandler from "express-async-handler";
 import { AppError } from "../classes/app-error.class";
-import { AppMessages, Endpoints, HttpStatus, ModuleNames, UserRoles } from "../data/app.constants";
-import { createVehicle, deleteVehicle, getSingleVehicle, getVehicles, updateVehicle } from "../services/vehicle.service";
+import { AppMessages, Endpoints, HttpStatus, ModuleNames, UserRoles,ActivityStatus } from "../data/app.constants";
+import { createVehicle, deleteVehicle, getSingleVehicle, getVehicles, updateVehicle, updateVehicleStatus } from "../services/vehicle.service";
 import Auth from "../middleware/auth.middleware";
 import { removeFileFromFirebase, uploadFileOnFirebase } from "../services/file-upload.service";
 import imageValidator from "../validators/image.validator";
@@ -22,6 +22,7 @@ vehicleController.post(
       }
     }
     req.body.imageUrl = uploadedFileUrl;
+    req.body.status = ActivityStatus.ACTIVE
     const response = await createVehicle(req.body);
     res.status(HttpStatus.CREATED).json(response);
   })
@@ -66,6 +67,14 @@ vehicleController.put(
     }
     req.body.imageUrl = uploadedFileUrl;
     const response = await updateVehicle(req.params.id, req.body);
+    res.status(HttpStatus.OK).json(response);
+  })
+);
+
+vehicleController.put(
+  Endpoints.UPDATE_STATUS,
+  AsyncHandler(async (req: Request, res: Response) => {
+    const response = await updateVehicleStatus(req.params.id, req.body);
     res.status(HttpStatus.OK).json(response);
   })
 );
