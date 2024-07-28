@@ -47,6 +47,14 @@ const schemas = {
   [ValidationKeys.VEHICLE_TYPE]: Joi.object({
     name: Joi.string().required(),
   }),
+  [ValidationKeys.DAILY_EXPENSE]: Joi.object({
+    vehicle: Joi.string(),
+    date: Joi.string().required(),
+    expenseOnFuel: Joi.number(),
+    challan: Joi.number(),
+    otherExpenses: Joi.number(),
+    remark: Joi.string(),
+  }),
 };
 
 const validate = (key: `${ValidationKeys}`, reqBody: any): boolean | string => {

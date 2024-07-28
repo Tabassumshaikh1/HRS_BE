@@ -15,6 +15,7 @@ export enum AppMessages {
   CUSTOMER_NOT_EXIST = "Customer not exist",
   VEHICLE_TYPE_NOT_EXIST = "Vehicle type not exists",
   VEHICLE_WITH_VEHICLE_TYPE = "There are some vehicles associated with this vehicle type, Please delete them first",
+  DAILY_EXPENSE_NOT_EXISTS = "Daily expense not exists"
 }
 
 export enum SortBy {
@@ -69,14 +70,18 @@ export enum ActivityStatus {
   ACTIVE = "Active",
   INACTIVE = "Inactive",
 }
-
+export enum DailyExpenseStatus {
+  PENDING = "Pending",
+  APPROVED = "Approved"
+}
 export enum Routes {
   ROOT = "/",
   AUTH = "/auth",
   DRIVERS = "/drivers",
   VEHICLES = "/vehicles",
   CUSTOMERS = "/customers",
-  VEHICLETYPE = "/vehicle-type",
+  VEHICLE_TYPE = "/vehicle-type",
+  DAILY_EXPENSE = "/daily-expense"
 }
 
 export enum Endpoints {
@@ -97,12 +102,14 @@ export enum ValidationKeys {
   VEHICLE = "vehicle",
   VEHICLE_TYPE = "vehicle_type",
   UPDATE_USER_STATUS = "update_user_status",
+  DAILY_EXPENSE = "daily_expense"
 }
 
 export enum SchemaNames {
   USER = "User",
   VEHICLE = "Vehicle",
   VEHICLE_TYPE = "Vehicle_type",
+  DAILY_EXPENSE = "Daily_expense"
 }
 
 export enum QueryBuilderKeys {
@@ -131,6 +138,8 @@ export enum AccountType {
 
 export enum PopulateKeys {
   VEHICLE_TYPE = "vehicleType",
+  DAILY_EXPENSE = "vehicle createdBy updatedBy"
+  
 }
 
 export enum HttpStatus {
