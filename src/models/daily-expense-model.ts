@@ -16,6 +16,7 @@ const dailyExpenseSchema = new Schema<IDailyExpense>(
   },
   {
     timestamps: true,
+    versionKey: false,
   }
 );
 

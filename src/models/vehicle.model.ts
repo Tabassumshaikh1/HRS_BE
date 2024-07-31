@@ -16,6 +16,7 @@ const vehicleSchema = new Schema<IVehicle>(
   },
   {
     timestamps: true,
+    versionKey: false
   }
 );
 
