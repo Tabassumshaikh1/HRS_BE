@@ -505,7 +505,11 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/md.amir/Downloads/Amazon-Logo.png"
+									"src": [
+										"/C:/Users/md.amir/Downloads/download.png",
+										"/C:/Users/md.amir/Downloads/Apple-Logo.png",
+										"/C:/Users/md.amir/Downloads/Amazon-Logo.png"
+									]
 								}
 							]
 						},
@@ -529,7 +533,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/vehicles/66a38c73eed312e0a2ca35ec",
+							"raw": "http://localhost:5000/vehicles/66a765cb1dcf8592695dfc29",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -537,7 +541,7 @@
 							"port": "5000",
 							"path": [
 								"vehicles",
-								"66a38c73eed312e0a2ca35ec"
+								"66a765cb1dcf8592695dfc29"
 							]
 						}
 					},
@@ -563,7 +567,7 @@
 								},
 								{
 									"key": "capacity",
-									"value": "212",
+									"value": "222222",
 									"type": "text"
 								},
 								{
@@ -589,12 +593,15 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/md.amir/Downloads/Apple-Logo.png"
+									"src": [
+										"/C:/Users/md.amir/Downloads/mongo.png",
+										"/C:/Users/md.amir/Downloads/node-js.png"
+									]
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:5000/vehicles/66a38c73eed312e0a2ca35ec",
+							"raw": "http://localhost:5000/vehicles/66a765cb1dcf8592695dfc29",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -602,7 +609,37 @@
 							"port": "5000",
 							"path": [
 								"vehicles",
-								"66a38c73eed312e0a2ca35ec"
+								"66a765cb1dcf8592695dfc29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Vehicle Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Inactive\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/vehicles/66a765cb1dcf8592695dfc29/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"vehicles",
+								"66a765cb1dcf8592695dfc29",
+								"status"
 							]
 						}
 					},
@@ -623,6 +660,28 @@
 							"path": [
 								"vehicles",
 								"666499c32a6e011c01a24d78"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Vehicle Image",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/vehicles/66a765cb1dcf8592695dfc29/images/66a9c6e49b0774e39fe23aa0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"vehicles",
+								"66a765cb1dcf8592695dfc29",
+								"images",
+								"66a9c6e49b0774e39fe23aa0"
 							]
 						}
 					},
@@ -889,7 +948,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjE5OTQ5NjEsImV4cCI6MTcyMjA4MTM2MX0.uIReRmqMM1sWx-Jz9FoGha-65COxdneQzQOuXtQ-q8U",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjI0MDI5NDcsImV4cCI6MTcyMjQ4OTM0N30.u7LB0Fnd8-n-6P0zjw3JZoiA8DhGbzPKM3y_VEZZ3Ss",
 				"type": "string"
 			}
 		]

@@ -91,6 +91,7 @@ vehicleController.put(
 
 vehicleController.put(
   Endpoints.UPDATE_STATUS,
+  Auth([UserRoles.ADMIN]),
   AsyncHandler(async (req: Request, res: Response) => {
     const response = await updateVehicleStatus(req.params.id, req.body);
     res.status(HttpStatus.OK).json(response);
