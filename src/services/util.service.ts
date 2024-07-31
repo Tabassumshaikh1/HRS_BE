@@ -2,7 +2,7 @@ import * as bcrypt from "bcryptjs";
 import { AppDefaults, CommonConst, QueryBuilderKeys, UserRoles } from "../data/app.constants";
 import { IBuildQuery, IQuery } from "../interfaces/query.interface";
 import { Request } from "express";
-import { SortOrder } from "mongoose";
+import mongoose, { SortOrder } from "mongoose";
 
 const camelToTitleCase = (value: string) =>
   value
@@ -27,6 +27,10 @@ const bcryptValue = async (value: any): Promise<string> => {
 
 const compareBcryptValue = async (value: any, hashedValue: any): Promise<boolean> => {
   return await bcrypt.compare(value, hashedValue);
+};
+
+const getUniqueId = (): string => {
+  return new mongoose.Types.ObjectId().toString();
 };
 
 const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaultValues?: IQuery): IBuildQuery => {
@@ -100,14 +104,12 @@ const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaul
         query.$and.push({ accountType: { $eq: req.query.accountType } });
       }
       return { query, queryParams };
-      case QueryBuilderKeys.VEHICLE_TYPE_LIST:
+    case QueryBuilderKeys.VEHICLE_TYPE_LIST:
       query = {
         $and: [
           {
-            $or: [
-              { name: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } }
-            ],
-          }
+            $or: [{ name: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } }],
+          },
         ],
       };
       return { query, queryParams };
@@ -117,4 +119,4 @@ const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaul
   }
 };
 
-export { bcryptValue, camelToTitleCase, compareBcryptValue, decodeBase64, encodeBase64, buildQuery };
+export { bcryptValue, camelToTitleCase, compareBcryptValue, decodeBase64, encodeBase64, getUniqueId, buildQuery };

@@ -38,7 +38,7 @@ const schemas = {
     mfgYear: Joi.any(),
     chassisNumber: Joi.any(),
     regNumber: Joi.any(),
-    imageUrl: Joi.any(),
+    imageUrls: Joi.any(),
     status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
   [ValidationKeys.UPDATE_USER_STATUS]: Joi.object({
