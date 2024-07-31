@@ -81,6 +81,9 @@ const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaul
       if (req.query.status) {
         query.$and.push({ status: { $eq: req.query.status } });
       }
+      if (req.query.vehicleType) {
+        query.$and.push({ vehicleType: { $eq: req.query.vehicleType } });
+      }
       return { query, queryParams };
     case QueryBuilderKeys.CUSTOMER_LIST:
       query = {

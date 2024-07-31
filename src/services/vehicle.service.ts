@@ -69,7 +69,7 @@ const getSingleVehicle = async (id: string): Promise<IVehicle | null> => {
   return await Vehicle.findOne({ _id: id })
     .populate(PopulateKeys.VEHICLE_TYPE)
     .transform((vehicle) => {
-      return vehicle ? { ...vehicle?.toJSON(), imageUrls: JSON.parse(vehicle?.imageUrls as string) } as IVehicle : null;
+      return vehicle ? ({ ...vehicle?.toJSON(), imageUrls: JSON.parse(vehicle?.imageUrls as string) } as IVehicle) : null;
     });
 };
 
@@ -85,14 +85,14 @@ const updateVehicle = async (id: string, reqBody: IVehicle): Promise<any> => {
     throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.VEHICLE_NOT_EXIST);
   }
 
-  if (!reqBody.imageUrls?.length) {
-    delete reqBody.imageUrls;
-  } else {
+  if (reqBody.imageUrls?.length && Array.isArray(reqBody.imageUrls)) {
     const vehicleImages: IVehicleImage[] = [...(vehicle.imageUrls as IVehicleImage[])];
-    for (const vehicleImage of reqBody.imageUrls as IVehicleImage[]) {
-      vehicleImages.push(vehicleImage);
+    for (const vehicleImage of vehicleImages) {
+      reqBody.imageUrls.push(vehicleImage);
     }
-    reqBody.imageUrls = JSON.stringify(vehicleImages);
+    reqBody.imageUrls = JSON.stringify(reqBody.imageUrls);
+  } else {
+    delete reqBody.imageUrls;
   }
 
   return await Vehicle.findByIdAndUpdate(id, reqBody).populate(PopulateKeys.VEHICLE_TYPE);
