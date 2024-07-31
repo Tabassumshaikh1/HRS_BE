@@ -1,16 +1,22 @@
 import { Request } from "express";
 import { AppError } from "../classes/app-error.class";
 import {
-    AppMessages,
-    DailyExpenseStatus,
-    HttpStatus,
-    PopulateKeys,
-    UserRoles,
-    ValidationKeys
+  AppDefaults,
+  AppMessages,
+  DailyExpenseStatus,
+  HttpStatus,
+  PopulateKeys,
+  QueryBuilderKeys,
+  SortBy,
+  UserRoles,
+  ValidationKeys
 } from "../data/app.constants";
 import { IDailyExpense } from "../interfaces/daily-expense.interface";
 import DailyExpense from "../models/daily-expense-model";
 import validate from "../validators/validation";
+import { buildQuery } from "./util.service";
+import { IQuery } from "../interfaces/query.interface";
+import { IListResponse } from "../interfaces/response.interface";
 
 // const getVehicles = async (req: Request): Promise<IDailyExpense> => {
 //   const { query, queryParams } = buildQuery(QueryBuilderKeys.VEHICLE_LIST, req, {
@@ -47,7 +53,7 @@ const createDailyExpense = async (req: Request): Promise<IDailyExpense> => {
     challan: req.body.challan,
     otherExpenses: req.body.otherExpenses,
     remark: req.body.remark,
-    status: req.user.role === UserRoles.ADMIN ? DailyExpenseStatus.APPROVED: DailyExpenseStatus.PENDING,
+    status: req.user.role === UserRoles.ADMIN ? DailyExpenseStatus.APPROVED : DailyExpenseStatus.PENDING,
     createdBy: req.user._id,
     updatedBy: req.user._id
   });
@@ -58,6 +64,24 @@ const getSingleExpense = async (id: string): Promise<IDailyExpense | null> => {
   return await DailyExpense.findOne({ _id: id }).populate(PopulateKeys.DAILY_EXPENSE);
 };
 
+const getAllExpense = async (req: Request): Promise<IListResponse> => {
+  const { query, queryParams } = buildQuery(QueryBuilderKeys.DAILY_EXPENSE, req, {
+    sort: AppDefaults.SORT,
+    sortBy: SortBy.ASC,
+  } as IQuery);
+
+  const DailyExpenseData = await DailyExpense.find(query)
+    .sort([[queryParams.sort, queryParams.sortBy]])
+    .skip(queryParams.page * queryParams.limit)
+    .limit(queryParams.limit);
+
+  const total = await DailyExpense.countDocuments(query);
+
+  return {
+    data: DailyExpenseData,
+    total,
+  };
+};
 const updateDailyExpense = async (id: string, req: Request): Promise<any> => {
   // Validating daily expense before saving into DB
   const errorMessage = validate(ValidationKeys.DAILY_EXPENSE, req.body);
@@ -73,34 +97,14 @@ const updateDailyExpense = async (id: string, req: Request): Promise<any> => {
   return await DailyExpense.findByIdAndUpdate(id, req.body).populate(PopulateKeys.DAILY_EXPENSE);
 };
 
-// const deleteVehicle = async (id: string): Promise<any> => {
-//   const vehicle = await getSingleVehicle(id);
-//   if (!vehicle) {
-//     throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.VEHICLE_NOT_EXIST);
-//   }
+const deleteDailyExpense = async (id: string): Promise<any> => {
+  const vehicle = await getSingleExpense(id);
+  if (!vehicle) {
+    throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.VEHICLE_NOT_EXIST);
+  }
 
-//   await Vehicle.deleteOne({ _id: id });
-//   if (vehicle?.imageUrl) {
-//     await removeFileFromFirebase(vehicle?.imageUrl);
-//   }
-//   return { _id: id };
-// };
-// const updateVehicleStatus = async (id: string, reqBody: IVehicle): Promise<any> => {
-//   const payload: any = {
-//     status: reqBody.status || CommonConst.EMPTY_STRING,
-//   };
+  return await DailyExpense.deleteOne({ _id: id });
+};
 
-//   const errorMessage = validate(ValidationKeys.UPDATE_USER_STATUS, payload);
-//   if (errorMessage) {
-//     throw new AppError(HttpStatus.BAD_REQUEST, errorMessage);
-//   }
-
-//   const driver = await getSingleVehicle(id);
-//   if (!driver) {
-//     throw new AppError(HttpStatus.NOT_FOUND, AppMessages.DRIVER_NOT_EXIST);
-//   }
-
-//   return await Vehicle.findByIdAndUpdate(id, payload);
-// };
-export { createDailyExpense,updateDailyExpense };
+export { createDailyExpense, updateDailyExpense, deleteDailyExpense, getAllExpense, getSingleExpense };
 

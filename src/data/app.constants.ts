@@ -117,6 +117,7 @@ export enum QueryBuilderKeys {
   VEHICLE_LIST = "vehicle_list",
   CUSTOMER_LIST = "customer_list",
   VEHICLE_TYPE_LIST = "vehicle_type_list",
+  DAILY_EXPENSE = "daily_expense"
 }
 
 export enum ImageMimeType {
