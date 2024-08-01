@@ -116,7 +116,38 @@ const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaul
         ],
       };
       return { query, queryParams };
-
+    case QueryBuilderKeys.DAILY_EXPENSE:
+      query = {
+        $and: [
+          {
+            $or: [{ remark: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } }],
+          },
+        ],
+      };
+      if (req.query.vehicle) {
+        query.$and.push({ vehicle: { $eq: req.query.vehicle } });
+      }
+      if (req.query.fromDate && req.query.toDate) {
+        const date = {
+          fromDate: req.query.fromDate as string,
+          toDate: req.query.toDate as string,
+        };
+        query.$and.push({
+          date: {
+            $gte: new Date(date.fromDate),
+            $lte: new Date(date.toDate),
+          },
+        });
+      }
+      if (req.query.status) {
+        query.$and.push({ status: { $eq: req.query.status } });
+      }
+      if (req.user.role === UserRoles.DRIVER) {
+        query.$and.push({ createdBy: { $eq: req.user._id } });
+      } else if (req.query.createdBy) {
+        query.$and.push({ createdBy: { $eq: req.query.createdBy } });
+      }
+      return { query, queryParams };
     default:
       return { query, queryParams };
   }

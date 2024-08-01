@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "fc341bf9-f772-468d-89ab-b5d77eb8ae7c",
+		"_postman_id": "602a7c0c-0d8e-4f10-85c0-5fbfca584898",
 		"name": "HRS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24530830"
+		"_exporter_id": "36149555"
 	},
 	"item": [
 		{
@@ -968,16 +968,17 @@
 				{
 					"name": "Add DE",
 					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "Get All DE",
-					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicle\": \"66ab24afb15da51bda19e4d9\",\r\n    \"date\": \"2024-07-22T12:48:56.372Z\",\r\n    \"expenseOnFuel\": 200,\r\n    \"challan\": 1000,\r\n    \"otherExpenses\": 500,\r\n    \"remark\": \"Test remark 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:5000/daily-expense",
 							"protocol": "http",
@@ -987,6 +988,75 @@
 							"port": "5000",
 							"path": [
 								"daily-expense"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All DE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/daily-expense?fromDate=2024-07-12T00:00:00.000Z&toDate=2024-08-01T23:59:59.999Z",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"daily-expense"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "AA",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "asc",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Approved",
+									"disabled": true
+								},
+								{
+									"key": "vehicle",
+									"value": "66ab24afb15da51bda19e4d9",
+									"disabled": true
+								},
+								{
+									"key": "fromDate",
+									"value": "2024-07-12T00:00:00.000Z"
+								},
+								{
+									"key": "toDate",
+									"value": "2024-08-01T23:59:59.999Z"
+								},
+								{
+									"key": "createdBy",
+									"value": "6672f19977c89f402d7f148f",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -1049,7 +1119,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjI0NDcxMzIsImV4cCI6MTcyMjUzMzUzMn0.4hLz1qIinZDgdP9gRUqPWz6pLFSECERIR0qdmXw56h8",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjI1MjQzNjAsImV4cCI6MTcyMjYxMDc2MH0.OCwfHME-oQpo4XBS4ebvrSGYMXO-bCcr4gbc12wiaoM",
 				"type": "string"
 			}
 		]

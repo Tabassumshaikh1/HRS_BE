@@ -15,7 +15,8 @@ export enum AppMessages {
   CUSTOMER_NOT_EXIST = "Customer not exist",
   VEHICLE_TYPE_NOT_EXIST = "Vehicle type not exists",
   VEHICLE_WITH_VEHICLE_TYPE = "There are some vehicles associated with this vehicle type, Please delete them first",
-  DAILY_EXPENSE_NOT_EXISTS = "Daily expense not exists"
+  DAILY_EXPENSE_NOT_EXISTS = "Daily expense not exists",
+  DAILY_EXPENSE_ALREADY_APPROVED = "Approced ecpense can not be update",
 }
 
 export enum SortBy {
@@ -30,6 +31,7 @@ export enum AppDefaults {
   SORT_BY = SortBy.DESC,
   FILE_SIZE_LIMIT = 2097152, // keep images size < 2 MB
   REQ_FILE_KEY = "file",
+  MULTIPLE_FILE_SIZE_LIMIT = 10485760, // keep all images size < 10 MB
 }
 
 export enum CommonConst {
@@ -72,7 +74,7 @@ export enum ActivityStatus {
 }
 export enum DailyExpenseStatus {
   PENDING = "Pending",
-  APPROVED = "Approved"
+  APPROVED = "Approved",
 }
 export enum Routes {
   ROOT = "/",
@@ -81,7 +83,7 @@ export enum Routes {
   VEHICLES = "/vehicles",
   CUSTOMERS = "/customers",
   VEHICLE_TYPE = "/vehicle-type",
-  DAILY_EXPENSE = "/daily-expense"
+  DAILY_EXPENSE = "/daily-expense",
 }
 
 export enum Endpoints {
@@ -92,7 +94,7 @@ export enum Endpoints {
   REGISTER = "/register",
   GOOGLE_SIGNIN = "/google-login",
   UPDATE_STATUS = "/:id/status",
-  DELETE_VEHICLE_IMAGE = "/:id/images/:imageId"
+  DELETE_VEHICLE_IMAGE = "/:id/images/:imageId",
 }
 
 export enum ValidationKeys {
@@ -102,14 +104,14 @@ export enum ValidationKeys {
   VEHICLE = "vehicle",
   VEHICLE_TYPE = "vehicle_type",
   UPDATE_USER_STATUS = "update_user_status",
-  DAILY_EXPENSE = "daily_expense"
+  DAILY_EXPENSE = "daily_expense",
 }
 
 export enum SchemaNames {
   USER = "User",
   VEHICLE = "Vehicle",
   VEHICLE_TYPE = "Vehicle_type",
-  DAILY_EXPENSE = "Daily_expense"
+  DAILY_EXPENSE = "Daily_expense",
 }
 
 export enum QueryBuilderKeys {
@@ -117,7 +119,7 @@ export enum QueryBuilderKeys {
   VEHICLE_LIST = "vehicle_list",
   CUSTOMER_LIST = "customer_list",
   VEHICLE_TYPE_LIST = "vehicle_type_list",
-  DAILY_EXPENSE = "daily_expense"
+  DAILY_EXPENSE = "daily_expense",
 }
 
 export enum ImageMimeType {
@@ -139,8 +141,7 @@ export enum AccountType {
 
 export enum PopulateKeys {
   VEHICLE_TYPE = "vehicleType",
-  DAILY_EXPENSE = "vehicle createdBy updatedBy"
-  
+  DAILY_EXPENSE = "vehicle createdBy updatedBy",
 }
 
 export enum HttpStatus {

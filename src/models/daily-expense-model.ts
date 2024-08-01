@@ -5,7 +5,7 @@ import { IDailyExpense } from "../interfaces/daily-expense.interface";
 const dailyExpenseSchema = new Schema<IDailyExpense>(
   {
     vehicle: { type: mongoose.Schema.Types.ObjectId, ref: SchemaNames.VEHICLE },
-    date: { type: String, required: true },
+    date: { type: Date, required: true },
     expenseOnFuel: { type: Number },
     challan: { type: Number },
     otherExpenses: { type: Number },

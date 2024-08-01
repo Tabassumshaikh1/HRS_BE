@@ -1,8 +1,13 @@
 import { Request, Response, Router } from "express";
 import AsyncHandler from "express-async-handler";
 import { Endpoints, HttpStatus } from "../data/app.constants";
-import { createDailyExpense, updateDailyExpense, deleteDailyExpense, getAllExpense, getSingleExpense } from "../services/daily-expense.service";
-
+import {
+  createDailyExpense,
+  updateDailyExpense,
+  deleteDailyExpense,
+  getDailyExpenses,
+  getSingleExpense,
+} from "../services/daily-expense.service";
 
 const dailyExpenseController = Router();
 
@@ -17,7 +22,7 @@ dailyExpenseController.post(
 dailyExpenseController.get(
   Endpoints.ROOT,
   AsyncHandler(async (req: Request, res: Response) => {
-    const response = await getAllExpense(req);
+    const response = await getDailyExpenses(req);
     res.status(HttpStatus.OK).json(response);
   })
 );

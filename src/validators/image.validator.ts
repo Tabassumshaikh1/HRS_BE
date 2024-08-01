@@ -21,7 +21,7 @@ export const multipleImageValidator = multer({
   fileFilter: imageFilter,
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: AppDefaults.FILE_SIZE_LIMIT as number,
+    fileSize: AppDefaults.MULTIPLE_FILE_SIZE_LIMIT as number,
   },
 }).array(AppDefaults.REQ_FILE_KEY);
 
