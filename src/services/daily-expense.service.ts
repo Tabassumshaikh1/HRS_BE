@@ -3,6 +3,7 @@ import { AppError } from "../classes/app-error.class";
 import {
   AppDefaults,
   AppMessages,
+  CommonConst,
   DailyExpenseStatus,
   HttpStatus,
   PopulateKeys,
@@ -19,7 +20,7 @@ import { IQuery } from "../interfaces/query.interface";
 import { IListResponse } from "../interfaces/response.interface";
 
 const createDailyExpense = async (req: Request): Promise<IDailyExpense> => {
-  // Validating vehicle before saving into DB
+  // Validating Daily Expense before saving into DB
   const errorMessage = validate(ValidationKeys.DAILY_EXPENSE, req.body);
   if (errorMessage) {
     throw new AppError(HttpStatus.BAD_REQUEST, errorMessage);
@@ -85,12 +86,30 @@ const updateDailyExpense = async (id: string, req: Request): Promise<any> => {
 };
 
 const deleteDailyExpense = async (id: string): Promise<any> => {
-  const vehicle = await getSingleExpense(id);
-  if (!vehicle) {
-    throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.VEHICLE_NOT_EXIST);
+  const dailyExpense = await getSingleExpense(id);
+  if (!dailyExpense) {
+    throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.DAILY_EXPENSE_NOT_EXISTS);
   }
 
   return await DailyExpense.deleteOne({ _id: id });
 };
 
-export { createDailyExpense, updateDailyExpense, deleteDailyExpense, getDailyExpenses, getSingleExpense };
+const updateDailyExpensStatus = async (id: string, reqBody: IDailyExpense): Promise<any> => {
+  const payload: any = {
+    status: reqBody.status || CommonConst.EMPTY_STRING,
+  };
+
+  const errorMessage = validate(ValidationKeys.DAILY_EXPENSE_STATUS, payload);
+  if (errorMessage) {
+    throw new AppError(HttpStatus.BAD_REQUEST, errorMessage);
+  }
+
+  const dailyExpense = await getSingleExpense(id);
+  if (!dailyExpense) {
+    throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.DAILY_EXPENSE_NOT_EXISTS);
+  }
+
+  return await DailyExpense.findByIdAndUpdate(id, payload);
+};
+
+export { createDailyExpense, updateDailyExpense, deleteDailyExpense, getDailyExpenses, getSingleExpense, updateDailyExpensStatus };

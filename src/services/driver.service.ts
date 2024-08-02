@@ -70,7 +70,7 @@ const updateDriverStatus = async (id: string, reqBody: IUser): Promise<any> => {
     status: reqBody.status || CommonConst.EMPTY_STRING,
   };
 
-  const errorMessage = validate(ValidationKeys.UPDATE_USER_STATUS, payload);
+  const errorMessage = validate(ValidationKeys.UPDATE_ACTIVITY_STATUS, payload);
   if (errorMessage) {
     throw new AppError(HttpStatus.BAD_REQUEST, errorMessage);
   }

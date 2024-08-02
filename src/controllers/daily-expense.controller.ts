@@ -1,13 +1,15 @@
 import { Request, Response, Router } from "express";
 import AsyncHandler from "express-async-handler";
-import { Endpoints, HttpStatus } from "../data/app.constants";
+import { Endpoints, HttpStatus, UserRoles } from "../data/app.constants";
 import {
   createDailyExpense,
   updateDailyExpense,
   deleteDailyExpense,
   getDailyExpenses,
   getSingleExpense,
+  updateDailyExpensStatus,
 } from "../services/daily-expense.service";
+import Auth from "../middleware/auth.middleware";
 
 const dailyExpenseController = Router();
 
@@ -39,6 +41,15 @@ dailyExpenseController.get(
   Endpoints.ID,
   AsyncHandler(async (req: Request, res: Response) => {
     const response = await getSingleExpense(req.params.id);
+    res.status(HttpStatus.OK).json(response);
+  })
+);
+
+dailyExpenseController.put(
+  Endpoints.UPDATE_STATUS,
+  Auth([UserRoles.ADMIN]),
+  AsyncHandler(async (req: Request, res: Response) => {
+    const response = await updateDailyExpensStatus(req.params.id, req.body);
     res.status(HttpStatus.OK).json(response);
   })
 );

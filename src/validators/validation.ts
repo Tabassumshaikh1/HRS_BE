@@ -1,5 +1,5 @@
 import * as Joi from "joi";
-import { UserRoles, ActivityStatus, ValidationKeys } from "../data/app.constants";
+import { UserRoles, ActivityStatus, ValidationKeys, DailyExpenseStatus } from "../data/app.constants";
 
 const schemas = {
   [ValidationKeys.NEW_USER]: Joi.object({
@@ -41,7 +41,7 @@ const schemas = {
     imageUrls: Joi.any(),
     status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
-  [ValidationKeys.UPDATE_USER_STATUS]: Joi.object({
+  [ValidationKeys.UPDATE_ACTIVITY_STATUS]: Joi.object({
     status: Joi.string().required().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
   [ValidationKeys.VEHICLE_TYPE]: Joi.object({
@@ -54,6 +54,9 @@ const schemas = {
     challan: Joi.number(),
     otherExpenses: Joi.number(),
     remark: Joi.string(),
+  }),
+  [ValidationKeys.DAILY_EXPENSE_STATUS]: Joi.object({
+    status: Joi.string().required().valid(DailyExpenseStatus.APPROVED, DailyExpenseStatus.PENDING),
   }),
 };
 

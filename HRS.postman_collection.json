@@ -999,7 +999,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/daily-expense?fromDate=2024-07-12T00:00:00.000Z&toDate=2024-08-01T23:59:59.999Z",
+							"raw": "http://localhost:5000/daily-expense?fromDate=2024-07-23T00:00:00.000Z&toDate=2024-08-01T23:59:59.999Z",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1046,7 +1046,7 @@
 								},
 								{
 									"key": "fromDate",
-									"value": "2024-07-12T00:00:00.000Z"
+									"value": "2024-07-23T00:00:00.000Z"
 								},
 								{
 									"key": "toDate",
@@ -1068,7 +1068,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/daily-expense/66aa702d7e570f880701ae5b",
+							"raw": "http://localhost:5000/daily-expense/66a67c09cb145bcf6fc49e5e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1076,7 +1076,7 @@
 							"port": "5000",
 							"path": [
 								"daily-expense",
-								"66aa702d7e570f880701ae5b"
+								"66a67c09cb145bcf6fc49e5e"
 							]
 						}
 					},
@@ -1097,15 +1097,45 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/vehicle-type/66a271956b1804f9cd99227e",
+							"raw": "http://localhost:5000/daily-expense/66a271956b1804f9cd99227e",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "5000",
 							"path": [
-								"vehicle-type",
+								"daily-expense",
 								"66a271956b1804f9cd99227e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update DE Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Pending\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/daily-expense/66a67c09cb145bcf6fc49e5e/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"daily-expense",
+								"66a67c09cb145bcf6fc49e5e",
+								"status"
 							]
 						}
 					},
@@ -1119,7 +1149,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjI1MjQzNjAsImV4cCI6MTcyMjYxMDc2MH0.OCwfHME-oQpo4XBS4ebvrSGYMXO-bCcr4gbc12wiaoM",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjI2MDI1OTksImV4cCI6MTcyMjY4ODk5OX0.Vyd9a7wCwZY9zPC7d4BIPEVmC6MXB3DrGW30gk6NAO8",
 				"type": "string"
 			}
 		]

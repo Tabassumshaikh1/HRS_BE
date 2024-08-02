@@ -1,3 +1,4 @@
+import { DailyExpenseStatus } from "../data/app.constants";
 import { IUser } from "./user.interface";
 import { IVehicle } from "./vehicle.interface";
 
@@ -9,7 +10,7 @@ export interface IDailyExpense {
   challan?: number;
   otherExpenses?: number;
   remark?: string;
-  status: string;
+  status: `${DailyExpenseStatus}`;
   createdBy: string | IUser;
   updatedBy: string | IUser;
   createdAt: string | Date;

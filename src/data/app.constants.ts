@@ -103,8 +103,9 @@ export enum ValidationKeys {
   UPDATE_DRIVER = "update_driver",
   VEHICLE = "vehicle",
   VEHICLE_TYPE = "vehicle_type",
-  UPDATE_USER_STATUS = "update_user_status",
+  UPDATE_ACTIVITY_STATUS = "update_activity_status",
   DAILY_EXPENSE = "daily_expense",
+  DAILY_EXPENSE_STATUS = "daily_expense_status",
 }
 
 export enum SchemaNames {
