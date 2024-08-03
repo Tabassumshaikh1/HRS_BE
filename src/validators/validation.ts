@@ -14,6 +14,14 @@ const schemas = {
     imageUrl: Joi.any(),
     status: Joi.string().valid(ActivityStatus.ACTIVE, ActivityStatus.INACTIVE),
   }),
+  [ValidationKeys.UPDATE_ME]: Joi.object({
+    name: Joi.string().required(),
+    userName: Joi.any(),
+    email: Joi.string().email().required(),
+    contactNumber: Joi.any(),
+    licenseNumber: Joi.any(),
+    imageUrl: Joi.any()
+  }),
 
   [ValidationKeys.LOGIN]: Joi.object({
     userName: Joi.string().required(),

@@ -89,12 +89,13 @@ export enum Routes {
 export enum Endpoints {
   ROOT = "/",
   ID = "/:id",
+  ME = "/me",
   LOGIN = "/login",
   LOGOUT = "/logout",
   REGISTER = "/register",
   GOOGLE_SIGNIN = "/google-login",
   UPDATE_STATUS = "/:id/status",
-  DELETE_VEHICLE_IMAGE = "/:id/images/:imageId",
+  DELETE_VEHICLE_IMAGE = "/:id/images/:imageId"  
 }
 
 export enum ValidationKeys {
@@ -106,6 +107,7 @@ export enum ValidationKeys {
   UPDATE_ACTIVITY_STATUS = "update_activity_status",
   DAILY_EXPENSE = "daily_expense",
   DAILY_EXPENSE_STATUS = "daily_expense_status",
+  UPDATE_ME = "update_me"
 }
 
 export enum SchemaNames {
