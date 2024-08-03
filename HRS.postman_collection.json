@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "602a7c0c-0d8e-4f10-85c0-5fbfca584898",
+		"_postman_id": "d350aadf-5877-4ff7-b6b6-aca73a6bfeab",
 		"name": "HRS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36149555"
+		"_exporter_id": "34688664"
 	},
 	"item": [
 		{
@@ -59,6 +59,62 @@
 							"path": [
 								"auth",
 								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Me",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "userName",
+									"value": "admin@123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "admin1@hrs.com",
+									"type": "text"
+								},
+								{
+									"key": "contactNumber",
+									"value": "9213443951",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/md.amir/Downloads/Amazon-Logo.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"me"
 							]
 						}
 					},
@@ -1149,7 +1205,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjI2MDI1OTksImV4cCI6MTcyMjY4ODk5OX0.Vyd9a7wCwZY9zPC7d4BIPEVmC6MXB3DrGW30gk6NAO8",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE0ZjI3ZGMzZmQ3MTdiNTlmNjk4NzIiLCJpYXQiOjE3MjI2OTM3MjEsImV4cCI6MTcyMjc4MDEyMX0.Dnf0J17Asf5wWgOwgxNEJl97tH1Caw7T8zM0LJnUIDg",
 				"type": "string"
 			}
 		]
