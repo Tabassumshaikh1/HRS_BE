@@ -82,6 +82,7 @@ const updateDailyExpense = async (id: string, req: Request): Promise<any> => {
   }
 
   req.body.updatedBy = req.user._id;
+  req.body.status = req.user.role === UserRoles.ADMIN ? DailyExpenseStatus.APPROVED : DailyExpenseStatus.PENDING;
   return await DailyExpense.findByIdAndUpdate(id, req.body).populate(PopulateKeys.DAILY_EXPENSE);
 };
 

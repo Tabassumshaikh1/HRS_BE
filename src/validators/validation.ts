@@ -48,11 +48,11 @@ const schemas = {
     name: Joi.string().required(),
   }),
   [ValidationKeys.DAILY_EXPENSE]: Joi.object({
-    vehicle: Joi.string(),
     date: Joi.string().required(),
-    expenseOnFuel: Joi.number(),
-    challan: Joi.number(),
-    otherExpenses: Joi.number(),
+    vehicle: Joi.string(),
+    expenseOnFuel: Joi.any(),
+    challan: Joi.any(),
+    otherExpenses: Joi.any(),
     remark: Joi.string(),
   }),
   [ValidationKeys.DAILY_EXPENSE_STATUS]: Joi.object({
