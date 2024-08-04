@@ -132,12 +132,6 @@ const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaul
           fromDate: req.query.fromDate as string,
           toDate: req.query.toDate as string,
         };
-        // query.$and.push({
-        //   date: {
-        //     $gte: `${new Date(date.fromDate).toISOString().split("T")[0]}T00:00:00.000Z`,
-        //     $lte: `${new Date(date.toDate).toISOString().split("T")[0]}T23:59:59.999Z`,
-        //   },
-        // });
         query.$and.push({
           date: {
             $gte: new Date(date.fromDate),

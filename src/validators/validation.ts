@@ -20,7 +20,7 @@ const schemas = {
     email: Joi.string().email().required(),
     contactNumber: Joi.any(),
     licenseNumber: Joi.any(),
-    imageUrl: Joi.any()
+    imageUrl: Joi.any(),
   }),
 
   [ValidationKeys.LOGIN]: Joi.object({
@@ -57,11 +57,11 @@ const schemas = {
   }),
   [ValidationKeys.DAILY_EXPENSE]: Joi.object({
     date: Joi.string().required(),
-    vehicle: Joi.string(),
+    vehicle: Joi.any(),
     expenseOnFuel: Joi.any(),
     challan: Joi.any(),
     otherExpenses: Joi.any(),
-    remark: Joi.string(),
+    remark: Joi.any(),
   }),
   [ValidationKeys.DAILY_EXPENSE_STATUS]: Joi.object({
     status: Joi.string().required().valid(DailyExpenseStatus.APPROVED, DailyExpenseStatus.PENDING),
