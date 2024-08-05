@@ -1,27 +1,44 @@
 import { Request, Response, Router } from "express";
 import AsyncHandler from "express-async-handler";
 import { AppError } from "../classes/app-error.class";
-import { AppMessages, Endpoints, HttpStatus, ModuleNames, UserRoles } from "../data/app.constants";
-import { createVehicle, deleteVehicle, getSingleVehicle, getVehicles, updateVehicle } from "../services/vehicle.service";
+import { ActivityStatus, AppMessages, Endpoints, HttpStatus, ModuleNames, UserRoles } from "../data/app.constants";
+import { IVehicleImage } from "../interfaces/vehicle.interface";
 import Auth from "../middleware/auth.middleware";
-import { removeFileFromFirebase, uploadFileOnFirebase } from "../services/file-upload.service";
-import imageValidator from "../validators/image.validator";
+import { uploadFileOnFirebase } from "../services/file-upload.service";
+import { getUniqueId } from "../services/util.service";
+import {
+  createVehicle,
+  deleteVehicle,
+  deleteVehicleImage,
+  getSingleVehicle,
+  getVehicles,
+  updateVehicle,
+  updateVehicleStatus,
+} from "../services/vehicle.service";
+import { multipleImageValidator } from "../validators/image.validator";
 
 const vehicleController = Router();
 
 vehicleController.post(
   Endpoints.ROOT,
   Auth([UserRoles.ADMIN]),
-  imageValidator,
+  multipleImageValidator,
   AsyncHandler(async (req: Request, res: Response) => {
     let uploadedFileUrl = null;
-    if (req.file) {
-      uploadedFileUrl = await uploadFileOnFirebase(req.file as Express.Multer.File, ModuleNames.VEHICLE);
-      if (!uploadedFileUrl) {
-        throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.INVALID_IMAGE);
+    const files: IVehicleImage[] = [];
+    if (req.files) {
+      for (const file of req.files as any[]) {
+        uploadedFileUrl = await uploadFileOnFirebase(file as Express.Multer.File, ModuleNames.VEHICLE);
+        if (uploadedFileUrl) {
+          files.push({
+            id: getUniqueId(),
+            imageUrl: uploadedFileUrl,
+          });
+        }
       }
     }
-    req.body.imageUrl = uploadedFileUrl;
+    req.body.imageUrls = files;
+    req.body.status = ActivityStatus.ACTIVE;
     const response = await createVehicle(req.body);
     res.status(HttpStatus.CREATED).json(response);
   })
@@ -51,21 +68,32 @@ vehicleController.get(
 vehicleController.put(
   Endpoints.ID,
   Auth([UserRoles.ADMIN]),
-  imageValidator,
+  multipleImageValidator,
   AsyncHandler(async (req: Request, res: Response) => {
     let uploadedFileUrl = null;
-    if (req.file) {
-      const vehicle = await getSingleVehicle(req.params.id);
-      if (vehicle?.imageUrl) {
-        await removeFileFromFirebase(vehicle?.imageUrl);
-      }
-      uploadedFileUrl = await uploadFileOnFirebase(req.file as Express.Multer.File, ModuleNames.VEHICLE);
-      if (!uploadedFileUrl) {
-        throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.INVALID_IMAGE);
+    const files: IVehicleImage[] = [];
+    if (req.files) {
+      for (const file of req.files as any[]) {
+        uploadedFileUrl = await uploadFileOnFirebase(file as Express.Multer.File, ModuleNames.VEHICLE);
+        if (uploadedFileUrl) {
+          files.push({
+            id: getUniqueId(),
+            imageUrl: uploadedFileUrl,
+          });
+        }
       }
     }
-    req.body.imageUrl = uploadedFileUrl;
+    req.body.imageUrls = files;
     const response = await updateVehicle(req.params.id, req.body);
+    res.status(HttpStatus.OK).json(response);
+  })
+);
+
+vehicleController.put(
+  Endpoints.UPDATE_STATUS,
+  Auth([UserRoles.ADMIN]),
+  AsyncHandler(async (req: Request, res: Response) => {
+    const response = await updateVehicleStatus(req.params.id, req.body);
     res.status(HttpStatus.OK).json(response);
   })
 );
@@ -75,6 +103,15 @@ vehicleController.delete(
   Auth([UserRoles.ADMIN]),
   AsyncHandler(async (req: Request, res: Response) => {
     const response = await deleteVehicle(req.params.id);
+    res.status(HttpStatus.OK).json(response);
+  })
+);
+
+vehicleController.delete(
+  Endpoints.DELETE_VEHICLE_IMAGE,
+  Auth([UserRoles.ADMIN]),
+  AsyncHandler(async (req: Request, res: Response) => {
+    const response = await deleteVehicleImage(req.params.id, req.params.imageId);
     res.status(HttpStatus.OK).json(response);
   })
 );

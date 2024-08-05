@@ -2,7 +2,7 @@ import * as bcrypt from "bcryptjs";
 import { AppDefaults, CommonConst, QueryBuilderKeys, UserRoles } from "../data/app.constants";
 import { IBuildQuery, IQuery } from "../interfaces/query.interface";
 import { Request } from "express";
-import { SortOrder } from "mongoose";
+import mongoose, { SortOrder } from "mongoose";
 
 const camelToTitleCase = (value: string) =>
   value
@@ -27,6 +27,10 @@ const bcryptValue = async (value: any): Promise<string> => {
 
 const compareBcryptValue = async (value: any, hashedValue: any): Promise<boolean> => {
   return await bcrypt.compare(value, hashedValue);
+};
+
+const getUniqueId = (): string => {
+  return new mongoose.Types.ObjectId().toString();
 };
 
 const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaultValues?: IQuery): IBuildQuery => {
@@ -77,6 +81,9 @@ const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaul
       if (req.query.status) {
         query.$and.push({ status: { $eq: req.query.status } });
       }
+      if (req.query.vehicleType) {
+        query.$and.push({ vehicleType: { $eq: req.query.vehicleType } });
+      }
       return { query, queryParams };
     case QueryBuilderKeys.CUSTOMER_LIST:
       query = {
@@ -100,21 +107,50 @@ const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaul
         query.$and.push({ accountType: { $eq: req.query.accountType } });
       }
       return { query, queryParams };
-      case QueryBuilderKeys.VEHICLE_TYPE_LIST:
+    case QueryBuilderKeys.VEHICLE_TYPE_LIST:
       query = {
         $and: [
           {
-            $or: [
-              { name: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } }
-            ],
-          }
+            $or: [{ name: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } }],
+          },
         ],
       };
       return { query, queryParams };
-
+    case QueryBuilderKeys.DAILY_EXPENSE:
+      query = {
+        $and: [
+          {
+            $or: [{ remark: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } }],
+          },
+        ],
+      };
+      if (req.query.vehicle) {
+        query.$and.push({ vehicle: { $eq: req.query.vehicle } });
+      }
+      if (req.query.fromDate && req.query.toDate) {
+        const date = {
+          fromDate: req.query.fromDate as string,
+          toDate: req.query.toDate as string,
+        };
+        query.$and.push({
+          date: {
+            $gte: new Date(date.fromDate),
+            $lte: new Date(date.toDate),
+          },
+        });
+      }
+      if (req.query.status) {
+        query.$and.push({ status: { $eq: req.query.status } });
+      }
+      if (req.user.role === UserRoles.DRIVER) {
+        query.$and.push({ createdBy: { $eq: req.user._id } });
+      } else if (req.query.createdBy) {
+        query.$and.push({ createdBy: { $eq: req.query.createdBy } });
+      }
+      return { query, queryParams };
     default:
       return { query, queryParams };
   }
 };
 
-export { bcryptValue, camelToTitleCase, compareBcryptValue, decodeBase64, encodeBase64, buildQuery };
+export { bcryptValue, camelToTitleCase, compareBcryptValue, decodeBase64, encodeBase64, getUniqueId, buildQuery };

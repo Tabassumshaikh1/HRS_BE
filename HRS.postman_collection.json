@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "feab7287-4ff9-4770-b9d5-2c75bed9b2c1",
+		"_postman_id": "d350aadf-5877-4ff7-b6b6-aca73a6bfeab",
 		"name": "HRS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36149555"
+		"_exporter_id": "34688664"
 	},
 	"item": [
 		{
@@ -59,6 +59,62 @@
 							"path": [
 								"auth",
 								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Me",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "userName",
+									"value": "admin@123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "admin1@hrs.com",
+									"type": "text"
+								},
+								{
+									"key": "contactNumber",
+									"value": "9213443951",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/md.amir/Downloads/Amazon-Logo.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/auth/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"me"
 							]
 						}
 					},
@@ -505,7 +561,11 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/md.amir/Downloads/Amazon-Logo.png"
+									"src": [
+										"/C:/Users/md.amir/Downloads/download.png",
+										"/C:/Users/md.amir/Downloads/Apple-Logo.png",
+										"/C:/Users/md.amir/Downloads/Amazon-Logo.png"
+									]
 								}
 							]
 						},
@@ -529,7 +589,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/vehicles/66a38c73eed312e0a2ca35ec",
+							"raw": "http://localhost:5000/vehicles/66a765cb1dcf8592695dfc29",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -537,7 +597,7 @@
 							"port": "5000",
 							"path": [
 								"vehicles",
-								"66a38c73eed312e0a2ca35ec"
+								"66a765cb1dcf8592695dfc29"
 							]
 						}
 					},
@@ -563,7 +623,7 @@
 								},
 								{
 									"key": "capacity",
-									"value": "212",
+									"value": "222222",
 									"type": "text"
 								},
 								{
@@ -589,12 +649,15 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/md.amir/Downloads/Apple-Logo.png"
+									"src": [
+										"/C:/Users/md.amir/Downloads/mongo.png",
+										"/C:/Users/md.amir/Downloads/node-js.png"
+									]
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:5000/vehicles/66a38c73eed312e0a2ca35ec",
+							"raw": "http://localhost:5000/vehicles/66a765cb1dcf8592695dfc29",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -602,7 +665,37 @@
 							"port": "5000",
 							"path": [
 								"vehicles",
-								"66a38c73eed312e0a2ca35ec"
+								"66a765cb1dcf8592695dfc29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Vehicle Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Inactive\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/vehicles/66a765cb1dcf8592695dfc29/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"vehicles",
+								"66a765cb1dcf8592695dfc29",
+								"status"
 							]
 						}
 					},
@@ -623,6 +716,28 @@
 							"path": [
 								"vehicles",
 								"666499c32a6e011c01a24d78"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Vehicle Image",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/vehicles/66a765cb1dcf8592695dfc29/images/66a9c6e49b0774e39fe23aa0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"vehicles",
+								"66a765cb1dcf8592695dfc29",
+								"images",
+								"66a9c6e49b0774e39fe23aa0"
 							]
 						}
 					},
@@ -882,6 +997,207 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "DailyExpense",
+			"item": [
+				{
+					"name": "delete DE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/daily-expense/66a67b63b073757d0aa11386",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"daily-expense",
+								"66a67b63b073757d0aa11386"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add DE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vehicle\": \"66ab24afb15da51bda19e4d9\",\r\n    \"date\": \"2024-07-22T12:48:56.372Z\",\r\n    \"expenseOnFuel\": 200,\r\n    \"challan\": 1000,\r\n    \"otherExpenses\": 500,\r\n    \"remark\": \"Test remark 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/daily-expense",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"daily-expense"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All DE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/daily-expense?fromDate=2024-07-23T00:00:00.000Z&toDate=2024-08-01T23:59:59.999Z",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"daily-expense"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "AA",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "asc",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Approved",
+									"disabled": true
+								},
+								{
+									"key": "vehicle",
+									"value": "66ab24afb15da51bda19e4d9",
+									"disabled": true
+								},
+								{
+									"key": "fromDate",
+									"value": "2024-07-23T00:00:00.000Z"
+								},
+								{
+									"key": "toDate",
+									"value": "2024-08-01T23:59:59.999Z"
+								},
+								{
+									"key": "createdBy",
+									"value": "6672f19977c89f402d7f148f",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single DE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/daily-expense/66a67c09cb145bcf6fc49e5e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"daily-expense",
+								"66a67c09cb145bcf6fc49e5e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update DE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Truck1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/daily-expense/66a271956b1804f9cd99227e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"daily-expense",
+								"66a271956b1804f9cd99227e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update DE Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"Pending\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/daily-expense/66a67c09cb145bcf6fc49e5e/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"daily-expense",
+								"66a67c09cb145bcf6fc49e5e",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
@@ -889,7 +1205,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjE5OTQ5NjEsImV4cCI6MTcyMjA4MTM2MX0.uIReRmqMM1sWx-Jz9FoGha-65COxdneQzQOuXtQ-q8U",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE0ZjI3ZGMzZmQ3MTdiNTlmNjk4NzIiLCJpYXQiOjE3MjI2OTM3MjEsImV4cCI6MTcyMjc4MDEyMX0.Dnf0J17Asf5wWgOwgxNEJl97tH1Caw7T8zM0LJnUIDg",
 				"type": "string"
 			}
 		]

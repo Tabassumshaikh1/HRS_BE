@@ -10,6 +10,7 @@ import {
   ValidationKeys,
   UserRoles,
   AccountType,
+  MongooseExcludedKeys,
 } from "../data/app.constants";
 import { ILoginCredentials } from "../interfaces/login.interface";
 import { ILoginResponse } from "../interfaces/response.interface";
@@ -109,4 +110,23 @@ const logout = (req: Request) => {
   return true;
 };
 
-export { login, logout, signInWithGoogle };
+const updateMe = async (req: Request): Promise<any> => {
+  // Validating update before saving into DB
+  const payload: any = {
+    name: req.body.name || CommonConst.EMPTY_STRING,
+    userName: req.body.userName || CommonConst.EMPTY_STRING,
+    email: req.body.email || CommonConst.EMPTY_STRING,
+    contactNumber: req.body.contactNumber || CommonConst.EMPTY_STRING,
+    licenseNumber: req.body.licenseNumber || CommonConst.EMPTY_STRING,
+  };
+  if (req.body.imageUrl) {
+    payload.imageUrl = req.body.imageUrl;
+  }
+  const errorMessage = validate(ValidationKeys.UPDATE_ME, req.body);
+  if (errorMessage) {
+    throw new AppError(HttpStatus.BAD_REQUEST, errorMessage);
+  }
+  return await User.findByIdAndUpdate(req.user._id, payload).select(MongooseExcludedKeys.PASSWORD);
+};
+
+export { login, logout, signInWithGoogle,updateMe };

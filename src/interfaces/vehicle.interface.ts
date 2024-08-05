@@ -6,10 +6,17 @@ export interface IVehicle {
   vehicleNumber: string;
   company: string;
   capacity: string;
-  mfgYear?: number;
+  mfgYear?: any;
   vehicleType: IVehicleType | string | null;
   chassisNumber?: string;
   regNumber?: string;
-  imageUrl?: string;
+  imageUrls?: string | IVehicleImage[];
   status: `${ActivityStatus}`;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface IVehicleImage {
+  id: string;
+  imageUrl: string;
 }

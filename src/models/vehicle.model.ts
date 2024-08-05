@@ -11,11 +11,12 @@ const vehicleSchema = new Schema<IVehicle>(
     mfgYear: { type: String },
     chassisNumber: { type: String },
     regNumber: { type: String },
-    imageUrl: { type: String },
+    imageUrls: { type: String },
     status: { type: String, default: ActivityStatus.INACTIVE },
   },
   {
     timestamps: true,
+    versionKey: false
   }
 );
 
