@@ -86,18 +86,22 @@ const updateDailyExpense = async (id: string, req: Request): Promise<any> => {
   return await DailyExpense.findByIdAndUpdate(id, req.body).populate(PopulateKeys.DAILY_EXPENSE);
 };
 
-const deleteDailyExpense = async (id: string): Promise<any> => {
-  const dailyExpense = await getSingleExpense(id);
+const deleteDailyExpense = async (req: Request): Promise<any> => {
+  const dailyExpense = await getSingleExpense(req.params.id);
   if (!dailyExpense) {
     throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.DAILY_EXPENSE_NOT_EXISTS);
   }
 
-  return await DailyExpense.deleteOne({ _id: id });
+  if (dailyExpense.status === DailyExpenseStatus.APPROVED && req.user.role === UserRoles.DRIVER) {
+    throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.DAILY_EXPENSE_ALREADY_APPROVED);
+  }
+
+  return await DailyExpense.deleteOne({ _id: req.params.id });
 };
 
-const updateDailyExpensStatus = async (id: string, reqBody: IDailyExpense): Promise<any> => {
+const updateDailyExpenseStatus = async (id: string, req: Request): Promise<any> => {
   const payload: any = {
-    status: reqBody.status || CommonConst.EMPTY_STRING,
+    status: req.body.status || CommonConst.EMPTY_STRING,
   };
 
   const errorMessage = validate(ValidationKeys.DAILY_EXPENSE_STATUS, payload);
@@ -109,8 +113,8 @@ const updateDailyExpensStatus = async (id: string, reqBody: IDailyExpense): Prom
   if (!dailyExpense) {
     throw new AppError(HttpStatus.BAD_REQUEST, AppMessages.DAILY_EXPENSE_NOT_EXISTS);
   }
-
+  payload.updatedBy = req.user._id;
   return await DailyExpense.findByIdAndUpdate(id, payload);
 };
 
-export { createDailyExpense, updateDailyExpense, deleteDailyExpense, getDailyExpenses, getSingleExpense, updateDailyExpensStatus };
+export { createDailyExpense, updateDailyExpense, deleteDailyExpense, getDailyExpenses, getSingleExpense, updateDailyExpenseStatus };

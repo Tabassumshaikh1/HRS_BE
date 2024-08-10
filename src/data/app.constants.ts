@@ -16,7 +16,7 @@ export enum AppMessages {
   VEHICLE_TYPE_NOT_EXIST = "Vehicle type not exists",
   VEHICLE_WITH_VEHICLE_TYPE = "There are some vehicles associated with this vehicle type, Please delete them first",
   DAILY_EXPENSE_NOT_EXISTS = "Daily expense not exists",
-  DAILY_EXPENSE_ALREADY_APPROVED = "Approced ecpense can not be update",
+  DAILY_EXPENSE_ALREADY_APPROVED = "Approved expense can not be update or delete",
 }
 
 export enum SortBy {
@@ -95,7 +95,7 @@ export enum Endpoints {
   REGISTER = "/register",
   GOOGLE_SIGNIN = "/google-login",
   UPDATE_STATUS = "/:id/status",
-  DELETE_VEHICLE_IMAGE = "/:id/images/:imageId"  
+  DELETE_VEHICLE_IMAGE = "/:id/images/:imageId",
 }
 
 export enum ValidationKeys {
@@ -107,7 +107,7 @@ export enum ValidationKeys {
   UPDATE_ACTIVITY_STATUS = "update_activity_status",
   DAILY_EXPENSE = "daily_expense",
   DAILY_EXPENSE_STATUS = "daily_expense_status",
-  UPDATE_ME = "update_me"
+  UPDATE_ME = "update_me",
 }
 
 export enum SchemaNames {

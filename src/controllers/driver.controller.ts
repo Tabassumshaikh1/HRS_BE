@@ -50,6 +50,7 @@ driverController.put(
   Endpoints.ID,
   imageValidator,
   AsyncHandler(async (req: Request, res: Response) => {
+    // TODO: All the firebase images upload functionality need to be move in services
     let uploadedFileUrl = null;
     if (req.file) {
       const driver = await getSingleDriver(req.params.id);
