@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d350aadf-5877-4ff7-b6b6-aca73a6bfeab",
+		"_postman_id": "cb48d357-89af-4018-8e92-c16cecd0f727",
 		"name": "HRS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "34688664"
@@ -1198,6 +1198,179 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "Add address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Address",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/daily-expense/66a67c09cb145bcf6fc49e5e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"daily-expense",
+								"66a67c09cb145bcf6fc49e5e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Truck1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/daily-expense/66a271956b1804f9cd99227e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"daily-expense",
+								"66a271956b1804f9cd99227e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Primary Address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/address/66b78802d402dd234b61e7ef/primary",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"address",
+								"66b78802d402dd234b61e7ef",
+								"primary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Addreses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/address?q=10000&page=1&limit=10&sort=createdAt&sortBy=desc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"address"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "10000"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt"
+								},
+								{
+									"key": "sortBy",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Address",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/vehicle-type/66a271956b1804f9cd99227e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"vehicle-type",
+								"66a271956b1804f9cd99227e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
@@ -1205,7 +1378,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE0ZjI3ZGMzZmQ3MTdiNTlmNjk4NzIiLCJpYXQiOjE3MjI2OTM3MjEsImV4cCI6MTcyMjc4MDEyMX0.Dnf0J17Asf5wWgOwgxNEJl97tH1Caw7T8zM0LJnUIDg",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjMzMDYyNzUsImV4cCI6MTcyMzM5MjY3NX0.-QaWjnEt3zvluDaadMPAqek0kDtkNr9tk7_SSWRdIjw",
 				"type": "string"
 			}
 		]

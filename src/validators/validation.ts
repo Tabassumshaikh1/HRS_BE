@@ -66,6 +66,14 @@ const schemas = {
   [ValidationKeys.DAILY_EXPENSE_STATUS]: Joi.object({
     status: Joi.string().required().valid(DailyExpenseStatus.APPROVED, DailyExpenseStatus.PENDING),
   }),
+  [ValidationKeys.ADDRESS]: Joi.object({
+    state : Joi.string().required(),
+    city : Joi.string().required(),
+    pincode : Joi.number().required(),
+    name: Joi.string().required(),
+    streetName: Joi.string().required(),
+    flatNo : Joi.string()
+  }),
 };
 
 const validate = (key: `${ValidationKeys}`, reqBody: any): boolean | string => {
