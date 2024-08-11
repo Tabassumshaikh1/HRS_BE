@@ -148,22 +148,24 @@ const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaul
         query.$and.push({ createdBy: { $eq: req.query.createdBy } });
       }
       return { query, queryParams };
-      case QueryBuilderKeys.ADDRESS:
-        query = {
-          $and: [
-            {
-              $or: [{ name: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
-                { flatNo : { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
-                { streetName: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
-                { city: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
-                { state: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } }              ],
-            },
-          ],
-        };
-        if (req.user) {
-          query.$and.push({ user: { $eq: req.user._id } });
-        }
-        return { query, queryParams };
+    case QueryBuilderKeys.ADDRESS:
+      query = {
+        $and: [
+          {
+            $or: [
+              { name: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { flatNo: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { streetName: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { city: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { state: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+            ],
+          },
+        ],
+      };
+      if (req.user) {
+        query.$and.push({ user: { $eq: req.user._id } });
+      }
+      return { query, queryParams };
     default:
       return { query, queryParams };
   }

@@ -1,8 +1,7 @@
 import { Request, Response, Router } from "express";
 import AsyncHandler from "express-async-handler";
 import { Endpoints, HttpStatus } from "../data/app.constants";
-import { addAddress,deleteAddress,getAddressById, updateAddress,getAllAddress,makeAddressPrimary } from "../services/address.service";
-
+import { addAddress, deleteAddress, getAddressById, updateAddress, getAllAddress, makeAddressPrimary } from "../services/address.service";
 
 const addressController = Router();
 
@@ -47,11 +46,11 @@ addressController.delete(
 );
 
 addressController.put(
-    Endpoints.PRIMARY_ADDRESS,
-    AsyncHandler(async (req: Request, res: Response) => {
-      const response = await makeAddressPrimary(req);
-      res.status(HttpStatus.OK).json(response);
-    })
-  );
+  Endpoints.PRIMARY_ADDRESS,
+  AsyncHandler(async (req: Request, res: Response) => {
+    const response = await makeAddressPrimary(req);
+    res.status(HttpStatus.OK).json(response);
+  })
+);
 
 export default addressController;

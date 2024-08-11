@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "cb48d357-89af-4018-8e92-c16cecd0f727",
+		"_postman_id": "7e2487b2-f85e-4f62-b01e-992646632498",
 		"name": "HRS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "34688664"
+		"_exporter_id": "36149555"
 	},
 	"item": [
 		{
@@ -1203,110 +1203,12 @@
 			"name": "Address",
 			"item": [
 				{
-					"name": "Add address",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5000/address",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"address"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Single Address",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5000/daily-expense/66a67c09cb145bcf6fc49e5e",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"daily-expense",
-								"66a67c09cb145bcf6fc49e5e"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Address",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Truck1\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5000/daily-expense/66a271956b1804f9cd99227e",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"daily-expense",
-								"66a271956b1804f9cd99227e"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Primary Address",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5000/address/66b78802d402dd234b61e7ef/primary",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"address",
-								"66b78802d402dd234b61e7ef",
-								"primary"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get All Addreses",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/address?q=10000&page=1&limit=10&sort=createdAt&sortBy=desc",
+							"raw": "http://localhost:5000/address?page=1&limit=10&sort=createdAt&sortBy=desc",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1318,7 +1220,8 @@
 							"query": [
 								{
 									"key": "q",
-									"value": "10000"
+									"value": "10000",
+									"disabled": true
 								},
 								{
 									"key": "page",
@@ -1342,6 +1245,113 @@
 					"response": []
 				},
 				{
+					"name": "Add address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"name\": \"Railway station\",\r\n            \"flatNo\": \"\",\r\n            \"streetName\": \"Ghatkopar\",\r\n            \"pincode\": 432322,\r\n            \"city\": \"Mumbai\",\r\n            \"state\": \"Maharastra\",\r\n            \"lat\": 19.088844,\r\n            \"lng\": 72.9078467\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Address",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/address/66a67c09cb145bcf6fc49e5e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"address",
+								"66a67c09cb145bcf6fc49e5e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"name\": \"Railway station\",\r\n            \"flatNo\": \"\",\r\n            \"streetName\": \"Ghatkopar\",\r\n            \"pincode\": 432322,\r\n            \"city\": \"Mumbai\",\r\n            \"state\": \"Maharastra\",\r\n            \"lat\": 19.088844,\r\n            \"lng\": 72.9078467\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/address/66b8396668a5cd167404f320",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"address",
+								"66b8396668a5cd167404f320"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Primary Address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/address/66b8396668a5cd167404f320/primary",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"address",
+								"66b8396668a5cd167404f320",
+								"primary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete Address",
 					"request": {
 						"method": "DELETE",
@@ -1356,14 +1366,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/vehicle-type/66a271956b1804f9cd99227e",
+							"raw": "http://localhost:5000/address/66a271956b1804f9cd99227e",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "5000",
 							"path": [
-								"vehicle-type",
+								"address",
 								"66a271956b1804f9cd99227e"
 							]
 						}
@@ -1378,7 +1388,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjMzMDYyNzUsImV4cCI6MTcyMzM5MjY3NX0.-QaWjnEt3zvluDaadMPAqek0kDtkNr9tk7_SSWRdIjw",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjMzNDkxOTYsImV4cCI6MTcyMzQzNTU5Nn0.iwuVhZ-tG_LF6_Pxw91PF0UcZoYJ0E3NenGhg_trqRs",
 				"type": "string"
 			}
 		]

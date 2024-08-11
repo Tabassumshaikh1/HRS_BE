@@ -67,12 +67,14 @@ const schemas = {
     status: Joi.string().required().valid(DailyExpenseStatus.APPROVED, DailyExpenseStatus.PENDING),
   }),
   [ValidationKeys.ADDRESS]: Joi.object({
-    state : Joi.string().required(),
-    city : Joi.string().required(),
-    pincode : Joi.number().required(),
     name: Joi.string().required(),
+    flatNo: Joi.any(),
     streetName: Joi.string().required(),
-    flatNo : Joi.string()
+    pincode: Joi.number().required(),
+    city: Joi.string().required(),
+    state: Joi.string().required(),
+    lat: Joi.any(),
+    lng: Joi.any(),
   }),
 };
 
