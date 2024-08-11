@@ -1251,7 +1251,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n            \"name\": \"Railway station\",\r\n            \"flatNo\": \"\",\r\n            \"streetName\": \"Ghatkopar\",\r\n            \"pincode\": 432322,\r\n            \"city\": \"Mumbai\",\r\n            \"state\": \"Maharastra\",\r\n            \"lat\": 19.088844,\r\n            \"lng\": 72.9078467\r\n}",
+							"raw": "{\r\n            \"name\": \"Railway station\",\r\n            \"flatNo\": \"\",\r\n            \"streetName\": \"New Street\",\r\n            \"area\": \"Ghatkopar\",\r\n            \"pincode\": 432322,\r\n            \"city\": \"Mumbai\",\r\n            \"state\": \"Maharastra\",\r\n            \"lat\": 19.088844,\r\n            \"lng\": 72.9078467\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1299,7 +1299,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n            \"name\": \"Railway station\",\r\n            \"flatNo\": \"\",\r\n            \"streetName\": \"Ghatkopar\",\r\n            \"pincode\": 432322,\r\n            \"city\": \"Mumbai\",\r\n            \"state\": \"Maharastra\",\r\n            \"lat\": 19.088844,\r\n            \"lng\": 72.9078467\r\n}",
+							"raw": "{\r\n            \"name\": \"Railway station\",\r\n            \"flatNo\": \"\",\r\n            \"streetName\": \"New Street\",\r\n            \"area\": \"Ghatkopar\",\r\n            \"pincode\": 432322,\r\n            \"city\": \"Mumbai\",\r\n            \"state\": \"Maharastra\",\r\n            \"lat\": 19.088844,\r\n            \"lng\": 72.9078467\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1388,7 +1388,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjcyZjE5OTc3Yzg5ZjQwMmQ3ZjE0OGYiLCJpYXQiOjE3MjMzNDkxOTYsImV4cCI6MTcyMzQzNTU5Nn0.iwuVhZ-tG_LF6_Pxw91PF0UcZoYJ0E3NenGhg_trqRs",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Njk2M2U2ZDEzODgxNTUwN2RiNTk0ZDYiLCJpYXQiOjE3MjMzNzY5MzUsImV4cCI6MTcyMzQ2MzMzNX0.S_9ESPhTS-VkYRXkJKmMfQ4s5qXE9Pa4hkyYuXSm244",
 				"type": "string"
 			}
 		]

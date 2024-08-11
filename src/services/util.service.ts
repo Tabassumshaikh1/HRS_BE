@@ -156,6 +156,7 @@ const buildQuery = (queryBuilderKey: `${QueryBuilderKeys}`, req: Request, defaul
               { name: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
               { flatNo: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
               { streetName: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
+              { area: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
               { city: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
               { state: { $regex: req.query.q || CommonConst.EMPTY_STRING, $options: CommonConst.I } },
             ],

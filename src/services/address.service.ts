@@ -42,6 +42,7 @@ const addAddress = async (req: Request): Promise<IAddress> => {
     name: req.body.name || CommonConst.EMPTY_STRING,
     flatNo: req.body.flatNo || CommonConst.EMPTY_STRING,
     streetName: req.body.streetName || CommonConst.EMPTY_STRING,
+    area: req.body.area || CommonConst.EMPTY_STRING,
     pincode: req.body.pincode || CommonConst.EMPTY_STRING,
     city: req.body.city || CommonConst.EMPTY_STRING,
     state: req.body.state || CommonConst.EMPTY_STRING,

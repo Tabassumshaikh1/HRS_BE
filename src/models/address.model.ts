@@ -7,6 +7,7 @@ const AddressSchema = new Schema<IAddress>(
     name: { type: String, required: true },
     flatNo: { type: String, required: false },
     streetName: { type: String, required: true },
+    area: { type: String, required: true },
     pincode: { type: Number, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },

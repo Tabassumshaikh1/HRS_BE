@@ -70,6 +70,7 @@ const schemas = {
     name: Joi.string().required(),
     flatNo: Joi.any(),
     streetName: Joi.string().required(),
+    area: Joi.string().required(),
     pincode: Joi.number().required(),
     city: Joi.string().required(),
     state: Joi.string().required(),
