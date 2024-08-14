@@ -16,7 +16,10 @@ export enum AppMessages {
   VEHICLE_TYPE_NOT_EXIST = "Vehicle type not exists",
   VEHICLE_WITH_VEHICLE_TYPE = "There are some vehicles associated with this vehicle type, Please delete them first",
   DAILY_EXPENSE_NOT_EXISTS = "Daily expense not exists",
-  DAILY_EXPENSE_ALREADY_APPROVED = "Approced ecpense can not be update",
+  DAILY_EXPENSE_ALREADY_APPROVED = "Approved expense can not be update or delete",
+  ADDRESS_NOT_EXISTS = "Address not exists",
+  ADDRESS_NOT_ASSOSIATED_USER = "Address is not assosiate with you",
+  ADDRESS_PRIMARY = "You can't delete primary address",
 }
 
 export enum SortBy {
@@ -84,6 +87,7 @@ export enum Routes {
   CUSTOMERS = "/customers",
   VEHICLE_TYPE = "/vehicle-type",
   DAILY_EXPENSE = "/daily-expense",
+  ADDRESS = "/address",
 }
 
 export enum Endpoints {
@@ -95,7 +99,8 @@ export enum Endpoints {
   REGISTER = "/register",
   GOOGLE_SIGNIN = "/google-login",
   UPDATE_STATUS = "/:id/status",
-  DELETE_VEHICLE_IMAGE = "/:id/images/:imageId"  
+  DELETE_VEHICLE_IMAGE = "/:id/images/:imageId",
+  PRIMARY_ADDRESS = "/:id/primary",
 }
 
 export enum ValidationKeys {
@@ -107,7 +112,8 @@ export enum ValidationKeys {
   UPDATE_ACTIVITY_STATUS = "update_activity_status",
   DAILY_EXPENSE = "daily_expense",
   DAILY_EXPENSE_STATUS = "daily_expense_status",
-  UPDATE_ME = "update_me"
+  UPDATE_ME = "update_me",
+  ADDRESS = "address",
 }
 
 export enum SchemaNames {
@@ -115,6 +121,7 @@ export enum SchemaNames {
   VEHICLE = "Vehicle",
   VEHICLE_TYPE = "Vehicle_type",
   DAILY_EXPENSE = "Daily_expense",
+  Address = "Address",
 }
 
 export enum QueryBuilderKeys {
@@ -123,6 +130,7 @@ export enum QueryBuilderKeys {
   CUSTOMER_LIST = "customer_list",
   VEHICLE_TYPE_LIST = "vehicle_type_list",
   DAILY_EXPENSE = "daily_expense",
+  ADDRESS = "address",
 }
 
 export enum ImageMimeType {

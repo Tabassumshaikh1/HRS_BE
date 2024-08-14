@@ -7,7 +7,7 @@ import {
   deleteDailyExpense,
   getDailyExpenses,
   getSingleExpense,
-  updateDailyExpensStatus,
+  updateDailyExpenseStatus,
 } from "../services/daily-expense.service";
 import Auth from "../middleware/auth.middleware";
 
@@ -49,7 +49,7 @@ dailyExpenseController.put(
   Endpoints.UPDATE_STATUS,
   Auth([UserRoles.ADMIN]),
   AsyncHandler(async (req: Request, res: Response) => {
-    const response = await updateDailyExpensStatus(req.params.id, req.body);
+    const response = await updateDailyExpenseStatus(req.params.id, req);
     res.status(HttpStatus.OK).json(response);
   })
 );
@@ -57,7 +57,7 @@ dailyExpenseController.put(
 dailyExpenseController.delete(
   Endpoints.ID,
   AsyncHandler(async (req: Request, res: Response) => {
-    const response = await deleteDailyExpense(req.params.id);
+    const response = await deleteDailyExpense(req);
     res.status(HttpStatus.OK).json(response);
   })
 );
