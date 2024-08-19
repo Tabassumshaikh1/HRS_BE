@@ -26,7 +26,11 @@ const Auth = (roles?: `${UserRoles}`[]) => {
       }
       next();
     } catch (error: any) {
-      res.status(error?.code || HttpStatus.UNAUTHORIZED).json({ message: error?.message || AppMessages.SESSION_EXPIRED, error });
+      let message = error.message;
+      if (message === CommonConst.JWT_EXPIRED || error?.name === CommonConst.TOKEN_EXPIRED_ERROR) {
+        message = AppMessages.SESSION_EXPIRED;
+      }
+      res.status(error?.code || HttpStatus.UNAUTHORIZED).json({ message: message || error?.message || AppMessages.SESSION_EXPIRED, error });
     }
   };
 };

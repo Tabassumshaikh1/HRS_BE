@@ -46,6 +46,8 @@ export enum CommonConst {
   Name = "name",
   VEHICLE_NUMBER = "vehicleNumber",
   I = "i",
+  TOKEN_EXPIRED_ERROR = "TokenExpiredError",
+  JWT_EXPIRED = "jwt expired",
 }
 
 export enum Environment {
@@ -88,6 +90,7 @@ export enum Routes {
   VEHICLE_TYPE = "/vehicle-type",
   DAILY_EXPENSE = "/daily-expense",
   ADDRESS = "/address",
+  COMMON = "/common",
 }
 
 export enum Endpoints {
@@ -101,6 +104,7 @@ export enum Endpoints {
   UPDATE_STATUS = "/:id/status",
   DELETE_VEHICLE_IMAGE = "/:id/images/:imageId",
   PRIMARY_ADDRESS = "/:id/primary",
+  SETTINGS = "/settings",
 }
 
 export enum ValidationKeys {
@@ -114,6 +118,7 @@ export enum ValidationKeys {
   DAILY_EXPENSE_STATUS = "daily_expense_status",
   UPDATE_ME = "update_me",
   ADDRESS = "address",
+  SETTINGS = "settings",
 }
 
 export enum SchemaNames {
@@ -121,7 +126,8 @@ export enum SchemaNames {
   VEHICLE = "Vehicle",
   VEHICLE_TYPE = "Vehicle_type",
   DAILY_EXPENSE = "Daily_expense",
-  Address = "Address",
+  ADDRESS = "Address",
+  SETTINGS = "Settings",
 }
 
 export enum QueryBuilderKeys {

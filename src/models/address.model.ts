@@ -22,5 +22,5 @@ const AddressSchema = new Schema<IAddress>(
   }
 );
 
-const Address = model<IAddress>(SchemaNames.Address, AddressSchema);
+const Address = model<IAddress>(SchemaNames.ADDRESS, AddressSchema);
 export default Address;

@@ -1,15 +1,12 @@
 import { Request } from "express";
 import { AppError } from "../classes/app-error.class";
 import { AppDefaults, AppMessages, CommonConst, HttpStatus, QueryBuilderKeys, SortBy, ValidationKeys } from "../data/app.constants";
+import { IAddress } from "../interfaces/address.interface";
 import { IQuery } from "../interfaces/query.interface";
 import { IListResponse } from "../interfaces/response.interface";
-
-import VehicleType from "../models/vehicleType.model";
+import Address from "../models/address.model";
 import validate from "../validators/validation";
 import { buildQuery } from "./util.service";
-import Vehicle from "../models/vehicle.model";
-import { IAddress } from "../interfaces/address.interface";
-import Address from "../models/address.model";
 
 const getAllAddress = async (req: Request): Promise<IListResponse> => {
   const { query, queryParams } = buildQuery(QueryBuilderKeys.ADDRESS, req, {
@@ -103,4 +100,4 @@ const makeAddressPrimary = async (req: Request): Promise<any> => {
   return await Address.findByIdAndUpdate(req.params.id, { isPrimary: true });
 };
 
-export { addAddress, getAddressById, updateAddress, deleteAddress, getAllAddress, makeAddressPrimary };
+export { addAddress, deleteAddress, getAddressById, getAllAddress, makeAddressPrimary, updateAddress };

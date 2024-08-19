@@ -1,5 +1,6 @@
 import * as Joi from "joi";
 import { UserRoles, ActivityStatus, ValidationKeys, DailyExpenseStatus } from "../data/app.constants";
+import { ISettings } from "../interfaces/settings.interface";
 
 const schemas = {
   [ValidationKeys.NEW_USER]: Joi.object({
@@ -76,6 +77,9 @@ const schemas = {
     state: Joi.string().required(),
     lat: Joi.any(),
     lng: Joi.any(),
+  }),
+  [ValidationKeys.SETTINGS]: Joi.object<ISettings>({
+    pricePerKM: Joi.number().required(),
   }),
 };
 
